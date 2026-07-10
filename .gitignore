@@ -1,0 +1,9 @@
+.env
+integrations/*/.env
+.DS_Store
+
+# 运行时
+.run/
+
+# 第三方框架由 scripts/setup-frameworks.sh 克隆，不纳入本仓库
+integrations/

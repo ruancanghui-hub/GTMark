@@ -1,0 +1,14 @@
+services:
+  prompt-optimizer:
+    image: linshen/prompt-optimizer:latest
+    container_name: gtmark-prompt-optimizer
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      - VITE_OPENAI_API_KEY=${VITE_OPENAI_API_KEY:-}
+      - VITE_GEMINI_API_KEY=${VITE_GEMINI_API_KEY:-}
+      - VITE_DEEPSEEK_API_KEY=${VITE_DEEPSEEK_API_KEY:-}
+      - MCP_DEFAULT_MODEL_PROVIDER=${MCP_DEFAULT_MODEL_PROVIDER:-openai}
+      - MCP_LOG_LEVEL=${MCP_LOG_LEVEL:-info}
+      - MCP_DEFAULT_LANGUAGE=${MCP_DEFAULT_LANGUAGE:-zh}

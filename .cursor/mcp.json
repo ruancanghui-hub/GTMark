@@ -1,0 +1,38 @@
+{
+  "mcpServers": {
+    "codegraph": {
+      "type": "stdio",
+      "command": "codegraph",
+      "args": [
+        "serve",
+        "--mcp",
+        "--path",
+        "${workspaceFolder}"
+      ]
+    },
+    "ruflo": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/scripts/mcp-ruflo.sh"
+      ]
+    },
+    "prompt-optimizer": {
+      "url": "http://localhost:3001/mcp"
+    },
+    "letta": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/scripts/mcp-letta.sh"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
+    }
+  }
+}

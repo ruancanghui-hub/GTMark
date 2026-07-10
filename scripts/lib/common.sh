@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+# Shared helpers for GTMark agent framework scripts.
+set -euo pipefail
+
+_common_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -n "${GTMARK_ROOT:-}" ]]; then
+  ROOT="$GTMARK_ROOT"
+elif [[ "$(basename "$_common_dir")" == "lib" && "$(basename "$(dirname "$_common_dir")")" == "scripts" ]]; then
+  ROOT="$(cd "$_common_dir/../.." && pwd)"
+else
+  ROOT="$(cd "$_common_dir/.." && pwd)"
+fi
+RUN_DIR="$ROOT/.run"
+LOG_DIR="$RUN_DIR/logs"
+PID_DIR="$RUN_DIR/pids"
+ENV_FILE="$ROOT/.env"
+STATE_FILE="$RUN_DIR/state.env"
+
+mkdir -p "$RUN_DIR" "$LOG_DIR" "$PID_DIR"
+
+log()  { printf '[%s] %s\n' "$(date +%H:%M:%S)" "$*"; }
+warn() { printf '[%s] ⚠️  %s\n' "$(date +%H:%M:%S)" "$*" >&2; }
+die()  { printf '[%s] ❌ %s\n' "$(date +%H:%M:%S)" "$*" >&2; exit 1; }
+
+load_env() {
+  export PATH="$HOME/.local/bin:$PATH"
+  if [[ -f "$ENV_FILE" ]]; then
+    set -a
+    # shellcheck disable=SC1090
+    source "$ENV_FILE"
+    set +a
+  fi
+}
+
+save_state() {
+  # shellcheck disable=SC2188
+  : >"$STATE_FILE"
+  for kv in "$@"; do
+    echo "$kv" >>"$STATE_FILE"
+  done
+}
+
+read_state() {
+  local key="$1" default="${2:-}"
+  if [[ -f "$STATE_FILE" ]]; then
+    local val
+    val="$(grep "^${key}=" "$STATE_FILE" 2>/dev/null | tail -1 | cut -d= -f2- || true)"
+    if [[ -n "$val" ]]; then
+      echo "$val"
+      return
+    fi
+  fi
+  echo "$default"
+}
+
+pid_file() { echo "$PID_DIR/$1.pid"; }
+
+is_running() {
+  local name="$1"
+  local pf
+  pf="$(pid_file "$name")"
+  [[ -f "$pf" ]] || return 1
+  local pid
+  pid="$(cat "$pf")"
+  kill -0 "$pid" 2>/dev/null
+}
+
+stop_pid() {
+  local name="$1"
+  local pf
+  pf="$(pid_file "$name")"
+  [[ -f "$pf" ]] || return 0
+  local pid
+  pid="$(cat "$pf")"
+  if kill -0 "$pid" 2>/dev/null; then
+    log "停止 $name (pid $pid) ..."
+    kill "$pid" 2>/dev/null || true
+    for _ in $(seq 1 15); do
+      kill -0 "$pid" 2>/dev/null || break
+      sleep 1
+    done
+    kill -9 "$pid" 2>/dev/null || true
+  fi
+  rm -f "$pf"
+}
+
+wait_url() {
+  local url="$1" label="$2" timeout="${3:-90}"
+  log "等待 $label ($url) ..."
+  for _ in $(seq 1 "$timeout"); do
+    if curl -sf "$url" >/dev/null 2>&1; then
+      log "$label 已就绪"
+      return 0
+    fi
+    # MCP HTTP 端点可能不接受 GET，退而检查端口
+    local port
+    port="$(echo "$url" | sed -n 's|http://localhost:\([0-9]*\).*|\1|p')"
+    if [[ -n "$port" ]] && nc -z localhost "$port" 2>/dev/null; then
+      log "$label 端口 $port 已监听"
+      return 0
+    fi
+    sleep 1
+  done
+  warn "$label 在 ${timeout}s 内未就绪"
+  return 1
+}
+
+pnpm_cmd() {
+  if command -v pnpm >/dev/null 2>&1; then
+    echo pnpm
+  elif command -v corepack >/dev/null 2>&1; then
+    echo "corepack pnpm"
+  else
+    echo "npx --yes pnpm@11"
+  fi
+}
+
+ensure_pnpm() {
+  export PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+  if command -v pnpm >/dev/null 2>&1; then
+    return 0
+  fi
+  if command -v corepack >/dev/null 2>&1; then
+    return 0
+  fi
+  log "安装 pnpm 到 ~/.local ..."
+  npm install -g pnpm@11 --prefix "$HOME/.local" >/dev/null 2>&1
+}
+
+install_uv_if_missing() {
+  if command -v uv >/dev/null 2>&1; then
+    return 0
+  fi
+  log "安装 uv（DeerFlow 需要）..."
+  curl -fsSL https://astral.sh/uv/install.sh | sh
+  export PATH="$HOME/.local/bin:$PATH"
+  command -v uv >/dev/null 2>&1
+}
+
+patch_prompt_optimizer_mcp_url() {
+  local url="$1"
+  node - "$ROOT/.cursor/mcp.json" "$url" <<'NODE'
+const fs = require('fs');
+const [, , file, url] = process.argv;
+const cfg = JSON.parse(fs.readFileSync(file, 'utf8'));
+cfg.mcpServers = cfg.mcpServers || {};
+cfg.mcpServers['prompt-optimizer'] = { url };
+fs.writeFileSync(file, JSON.stringify(cfg, null, 2) + '\n');
+console.log('MCP prompt-optimizer ->', url);
+NODE
+}
+
+ensure_deerflow_config() {
+  local df="$ROOT/integrations/deer-flow"
+  local cfg="$df/config.yaml"
+  [[ -d "$df" ]] || return 1
+
+  if [[ -f "$cfg" ]] && grep -q '^sandbox:' "$cfg" 2>/dev/null; then
+    return 0
+  fi
+
+  log "生成 DeerFlow 最小 DeepSeek 配置（含 sandbox/tools）..."
+  (
+    cd "$df/backend"
+    export PATH="$HOME/.local/bin:$PATH"
+    uv run python - <<'PY'
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path("..") / "scripts"))
+from wizard.writer import write_config_yaml
+
+write_config_yaml(
+    Path("../config.yaml"),
+    provider_use="deerflow.models.patched_deepseek:PatchedChatDeepSeek",
+    model_name="deepseek-chat",
+    display_name="DeepSeek Chat",
+    api_key_field="api_key",
+    env_var="DEEPSEEK_API_KEY",
+    extra_model_config={"timeout": 600.0, "max_retries": 2, "max_tokens": 8192},
+    sandbox_use="deerflow.sandbox.local:LocalSandboxProvider",
+    allow_host_bash=False,
+    include_bash_tool=False,
+)
+print("config.yaml written")
+PY
+  ) || return 1
+
+  if [[ -n "${DEEPSEEK_API_KEY:-}" ]]; then
+    touch "$df/.env"
+    if ! grep -q '^DEEPSEEK_API_KEY=' "$df/.env" 2>/dev/null; then
+      echo "DEEPSEEK_API_KEY=$DEEPSEEK_API_KEY" >>"$df/.env"
+    fi
+  fi
+}
+
+sync_prompt_optimizer_env() {
+  local po="$ROOT/integrations/prompt-optimizer"
+  local target="$po/.env.local"
+  [[ -d "$po" ]] || return 1
+
+  {
+    echo "# auto-generated by start-all.sh"
+    [[ -n "${VITE_DEEPSEEK_API_KEY:-}" ]] && echo "VITE_DEEPSEEK_API_KEY=$VITE_DEEPSEEK_API_KEY"
+    [[ -n "${MCP_DEFAULT_MODEL_PROVIDER:-}" ]] && echo "MCP_DEFAULT_MODEL_PROVIDER=$MCP_DEFAULT_MODEL_PROVIDER"
+    [[ -n "${MCP_DEFAULT_LANGUAGE:-}" ]] && echo "MCP_DEFAULT_LANGUAGE=$MCP_DEFAULT_LANGUAGE"
+    echo "MCP_HTTP_PORT=${MCP_HTTP_PORT:-3000}"
+    echo "MCP_LOG_LEVEL=${MCP_LOG_LEVEL:-info}"
+  } >"$target"
+}
