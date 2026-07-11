@@ -1,0 +1,5 @@
+// Application-level settings for the Runner target.
+
+PRODUCT_NAME = LuckyDatePro
+PRODUCT_BUNDLE_IDENTIFIER = com.nightelf.LuckyDatePro
+PRODUCT_COPYRIGHT = Copyright © 2026 Nightelf. All rights reserved.

@@ -1,0 +1,9 @@
+# Minimal Supabase CLI config. Run: supabase db push / supabase functions deploy
+
+project_id = "dddxxbmlgcqociehqmhk"
+
+[api]
+enabled = true
+
+[db]
+major_version = 17

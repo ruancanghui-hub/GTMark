@@ -1,0 +1,624 @@
+{
+  "@@locale": "en",
+  "appTitle": "吉辰万年历",
+  "appNameShort": "吉辰万年历",
+  "commonCancel": "Cancel",
+  "commonDelete": "Delete",
+  "commonAdd": "Add",
+  "commonSave": "Save",
+  "commonSubmit": "Submit",
+  "commonClose": "Close",
+  "commonOk": "OK",
+  "notFoundTitle": "Page not found",
+  "notFoundBackHome": "Back to home",
+  "splashTagline": "Calendar · lucky days · reminders · blessings",
+  "splashMessage": "See solar and lunar dates, pick auspicious days, and never miss what matters.",
+  "splashLoading": "Loading…",
+  "splashVideoUnavailable": "Video unavailable",
+  "settingsTitle": "Settings",
+  "settingsSectionDateDisplay": "Date & display",
+  "settingsHomeCardOrderTitle": "Primary / secondary line on home cards",
+  "settingsHomeCardOrderSubtitle": "Which line shows first: Gregorian or lunar",
+  "settingsSolarFirst": "Gregorian first",
+  "settingsLunarFirst": "Lunar first",
+  "settingsSectionNotify": "Notifications",
+  "settingsNotifyMasterTitle": "Notifications master switch",
+  "settingsNotifyMasterSubtitle": "When off, no new reminders are scheduled (saved reminder settings remain).",
+  "settingsSectionHabitWidget": "Habit & home screen widget",
+  "settingsWidgetModeTitle": "Widget primary event",
+  "settingsWidgetModeNearest": "Soonest deadline",
+  "settingsWidgetModeTodayFirst": "First row of Today list",
+  "settingsWidgetModePinnedFirst": "Pinned in 7-day window, else soonest",
+  "settingsDailyDigestTitle": "Daily summary notification",
+  "settingsDailyDigestSubtitle": "At most once per day when enabled. Requires notifications on.",
+  "settingsDailyDigestTime": "Summary time",
+  "notifDigestChannelName": "Daily summary",
+  "notifDigestChannelDescription": "At most one summary per day when enabled in settings.",
+  "notifDigestTitle": "Today",
+  "notifDigestBody": "{count} countdown(s) in the next 7 days.",
+  "@notifDigestBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsSectionLegal": "Legal & help",
+  "settingsPrivacy": "Privacy policy",
+  "settingsTerms": "Terms of service",
+  "settingsFeedback": "Feedback",
+  "settingsSectionAbout": "About",
+  "settingsAboutApp": "About LuckyDate",
+  "settingsVersion": "Version {version}",
+  "settingsAboutBlurb": "Important date reminders and local notifications. When you sign in with email, events sync to your configured cloud.",
+  "settingsSectionLanguage": "Language",
+  "settingsLanguageEnglish": "English",
+  "settingsLanguageChinese": "简体中文",
+  "copyrightLegalese": "© 2026",
+  "navCountdownDay": "Countdown",
+  "navCountdownBook": "Countdown book",
+  "navHistoryToday": "Today in history",
+  "navProfile": "Profile",
+  "sidePanelGuest": "Local user",
+  "sidePanelOpenSettings": "Open settings",
+  "appBarTitleDays": "LuckyDate · Countdown",
+  "appBarTitleBook": "Countdown book",
+  "appBarTitleHistory": "Today in history",
+  "appBarTitleProfile": "Profile",
+  "appBarTitleDefault": "LuckyDate",
+  "appBarFiltered": "LuckyDate · {label} only",
+  "deleteEventTitle": "Delete event?",
+  "deleteEventBody": "「{title}」will be permanently deleted.",
+  "deleteCategoryTitle": "Delete category?",
+  "deleteCategoryBody": "Remove \"{name}\". You can only delete when it has no events.",
+  "emptyEventsFiltered": "No events in this category. Tap + or change filter.",
+  "emptyEvents": "No events yet. Tap + to add.",
+  "searchEventsHint": "Search events...",
+  "searchClearTooltip": "Clear search",
+  "dashboardQuickPickAll": "All",
+  "dashboardQuickPickSectionHint": "Tap a name to filter quickly. You can still type a keyword below.",
+  "dashboardSearchKeywordHint": "Keyword",
+  "dashboardSearchPanelOpen": "Search & filter",
+  "dashboardSearchPanelClose": "Hide search",
+  "dashboardSearchActiveBadge": "On",
+  "todaySummaryTitle": "Today",
+  "todaySummaryEmpty": "No countdown events in the next 7 days (including today).",
+  "todaySummaryCreateEvent": "Create event",
+  "todaySummaryShowAllCategories": "All categories",
+  "todaySummaryOnlyCurrentCategory": "Match home category filter",
+  "dashboardTodaySummaryButton": "Today",
+  "emptySearchResults": "No matching events found.",
+  "onboardingHint": "Create an event and pick a category",
+  "addCategoryTitle": "Add category",
+  "categoryNameLabel": "Name",
+  "categoryIconLabel": "Icon (emoji)",
+  "filterByCategory": "Browse by category",
+  "tooltipAddCategory": "Add category",
+  "sectionCategoryShelf": "Category shelf",
+  "sectionListFilter": "List & filter",
+  "sectionTools": "Tools",
+  "toolDateCalculator": "Date calculator",
+  "toolMilestone": "Milestones",
+  "allEvents": "All events",
+  "tooltipDeleteCategory": "Delete category",
+  "newEvent": "New event",
+  "eventCount": "{count} items",
+  "archiveTitle": "Archive & hide",
+  "archivePlaceholder": "Archive is coming soon.",
+  "historySampleData": "Showing sample data (offline or no cache for this day).",
+  "historyWikimedia": "Entries from Wikimedia projects.",
+  "historySupabaseAi": "Includes Supabase AI supplement.",
+  "historyIdaily": "iDaily global view",
+  "historyExploreTagline": "Explore today in history.",
+  "historyHoliday": "Holidays",
+  "historyEvents": "Historical events",
+  "historyEmptySupabase": "No data. Pull to refresh or try again (Wikimedia API needs network). With Supabase, AI merge is attempted.",
+  "historyEmpty": "No data. Pull to refresh (Wikimedia API needs network).",
+  "dashboardTodayFocus": "Today focus",
+  "dashboardDaysLeft": "{days} days",
+  "dashboardSelectedCount": "{count} selected",
+  "dashboardCancelSelection": "Cancel selection",
+  "dashboardBatchMarkCompleted": "Mark completed",
+  "dashboardBatchArchive": "Batch archive",
+  "dashboardBatchUpdateCategory": "Batch category",
+  "dashboardBatchCategoryTitle": "Batch update category",
+  "dashboardBatchUpdateReminder": "Batch reminder",
+  "dashboardBatchReminderTitle": "Batch update reminder preset",
+  "dashboardFilterAll": "All",
+  "dashboardFilterActive": "Active",
+  "dashboardFilterCompleted": "Completed",
+  "historyYearReviewTitle": "{year} Year review",
+  "historySummaryTotal": "Total",
+  "historySummaryActive": "Active",
+  "historySummaryCompleted": "Completed",
+  "historySummaryArchived": "Archived",
+  "historyCompletionRate": "Completion rate",
+  "historyCategoryRatio": "Category ratio",
+  "historyArchivedEvents": "Archived events",
+  "historyArchivedCount": "{count} items",
+  "historyArchivedEmpty": "No archived events",
+  "historyRestore": "Restore",
+  "historyDelete": "Delete",
+  "profileSectionCommon": "Common",
+  "profileSettings": "Settings",
+  "profileFeedback": "Feedback",
+  "profileAccountSecurity": "Account & security",
+  "profileExportPng": "Export as image",
+  "toastExportOk": "Image generated. Save or share from the share sheet.",
+  "toastExportEmpty": "No events to export",
+  "profileSectionAboutAccount": "About & account",
+  "profilePrivacy": "Privacy policy",
+  "profileLogout": "Log out",
+  "profileDeleteAccount": "Delete account",
+  "profileDeleteAccountConfirmTitle": "Request account deletion",
+  "profileDeleteAccountConfirmBody": "After confirmation, your mail app will open to send a deletion request to support.",
+  "profileDeleteAccountEmailSubject": "LuckyDate account deletion request",
+  "profileDeleteAccountEmailFallback": "Cannot open mail app. Please send an email to ruancanghui@163.com.",
+  "milestoneTitle": "Milestones",
+  "milestoneEmpty": "No events yet. Create one on the home tab.",
+  "milestoneSubtitle": "Your events by distance from today (nearest first).",
+  "milestoneSection7d": "1–7 days",
+  "milestoneSection30d": "8–30 days",
+  "milestoneSectionFar": "Farther",
+  "milestoneCardDesc": "{cat} · {dateLine} · {dist} days from today · {label}",
+  "milestoneReached": "Milestone reached!",
+  "milestoneApproaching": "Milestone approaching",
+  "dateCalcTitle": "Date calculator",
+  "dateCalcTabInterval": "Interval",
+  "dateCalcTabShift": "Shift date",
+  "dateCalcStartLunarPicker": "Start date (lunar picker)",
+  "dateCalcStart": "Start date",
+  "dateCalcEndLunarPicker": "End date (lunar picker)",
+  "dateCalcEnd": "End date",
+  "dateCalcInclusive": "Include start & end",
+  "dateCalcCompute": "Calculate",
+  "dateCalcIntervalDays": "Interval: {n} days",
+  "dateCalcStartLine": "Start: {date}",
+  "dateCalcLunarLine": "Lunar: {lunar}",
+  "dateCalcEndLine": "End: {date}",
+  "dateCalcBaseLunarPicker": "Base date (lunar picker)",
+  "dateCalcBase": "Base date",
+  "dateCalcDaysLabel": "Days",
+  "dateCalcDaysHint": "Integer",
+  "dateCalcBefore": "N days before",
+  "dateCalcAfter": "N days after",
+  "dateCalcResult": "Result",
+  "dateCalcGregorianLine": "Gregorian: {date}",
+  "loginTitleSignIn": "Sign in",
+  "loginTitleSignUp": "Sign up",
+  "loginEmail": "Email",
+  "loginPassword": "Password",
+  "loginCtaEnter": "Sign in & go to home",
+  "loginCtaRegister": "Register & go to home",
+  "loginSwitchToSignIn": "Have an account? Sign in",
+  "loginSwitchToSignUp": "No account? Register",
+  "loginSupabaseMissing": "Supabase not configured (SUPABASE_URL / SUPABASE_ANON_KEY). Demo sign-in; events won't sync to cloud.",
+  "loginDemo": "Demo sign-in & go to home",
+  "eventDetailTitle": "Event",
+  "eventDetailNotFound": "Event not found or list out of sync.",
+  "eventDetailNotifyOff": "Off",
+  "eventDetailNotifyOn": "On · {time}",
+  "eventDetailDeleteTitle": "Delete event?",
+  "eventDetailDeleteBody": "This cannot be undone.",
+  "eventDetailTargetDate": "Target date",
+  "eventDetailLunar": "Lunar",
+  "eventDetailMode": "Mode",
+  "eventDetailModeCountdown": "Countdown",
+  "eventDetailModeElapsed": "Elapsed",
+  "eventDetailReminder": "Reminder",
+  "klingLoading": "Loading…",
+  "legalPrivacyTitle": "Privacy policy",
+  "legalTermsTitle": "Terms of service",
+  "legalPrivacyBody": "Full text is shown in-app; we process data on a minimal-necessary basis—see the Markdown document for details.",
+  "legalTermsBody": "Full text is shown in-app; by using the app you agree to the complete terms.",
+  "legalMdLoadError": "Could not load the document. Please try again or restart the app.",
+  "legalConsentTitle": "Welcome to 吉辰万年历",
+  "legalConsentMessage": "To continue, please read and agree to the Terms of Service and Privacy Policy. Use the links below to read the full text; tap agree to enter the app.",
+  "legalConsentAgree": "Agree and continue",
+  "legalConsentDisagree": "Disagree and exit",
+  "legalConsentViewTerms": "View terms of service",
+  "legalConsentViewPrivacy": "View privacy policy",
+  "accountSecurityTitle": "Account & security",
+  "accountLoginPrompt": "Sign in to edit nickname and view account info.",
+  "accountGoLogin": "Sign in",
+  "accountUserId": "User ID",
+  "accountEmail": "Email",
+  "accountLoginMethod": "Sign-in method",
+  "accountLoginMethodSupabase": "Supabase email",
+  "accountNickname": "Nickname",
+  "accountNicknameHint": "Stored only in local profile",
+  "toastNicknameEmpty": "Nickname cannot be empty",
+  "toastNicknameTooLong": "Nickname max 32 characters",
+  "toastSaved": "Saved",
+  "feedbackTitle": "Feedback",
+  "feedbackIntro": "Choose a type and describe the issue. Content is saved on this device only.",
+  "feedbackTypeLabel": "Type",
+  "feedbackContentLabel": "Details",
+  "feedbackContentHint": "Steps, expected vs actual behavior",
+  "feedbackTypeFeature": "Feature request",
+  "feedbackTypeBug": "Bug report",
+  "feedbackTypeAccount": "Account & sync",
+  "feedbackTypeOther": "Other",
+  "toastFeedbackEmpty": "Please enter feedback",
+  "toastFeedbackTooLong": "Content exceeds {max} characters",
+  "toastFeedbackSavedLocal": "Saved on device",
+  "permNotifyMasterOffTitle": "In-app notifications are off",
+  "permNotifyMasterOffBody": "Turn on \"Notifications master switch\" in Settings first.",
+  "permGoEnable": "Open Settings",
+  "permNeedSystemNotifyTitle": "Notification permission needed",
+  "permNeedSystemNotifyBodyIos": "Notifications are off. Enable in Settings → LuckyDate → Notifications.",
+  "permNeedSystemNotifyBodyGeneric": "Notification permission is required for reminders.",
+  "permOpenSystemSettings": "Open system settings",
+  "permNeedCalendarTitle": "Calendar access needed",
+  "permNeedCalendarBodyIos": "Calendar access denied. Enable in Settings → LuckyDate.",
+  "permNeedCalendarBodyGeneric": "Calendar access is needed to write events.",
+  "permNeedRemindersTitle": "Reminders access needed",
+  "permNeedRemindersBodyIos": "Reminders denied. Enable in Settings → LuckyDate.",
+  "permNeedRemindersBodyGeneric": "Reminders access is needed to sync.",
+  "permNotifyMasterOffSaveBody": "Turn on the in-app notification switch to schedule local reminders.\n\nYou can save the event and enable notifications later in Settings.",
+  "permSaveWithoutReminder": "Save without reminder",
+  "permNeedNotifyDetailTitle": "Notification permission needed",
+  "permNeedNotifyDetailBodyIos": "Notifications disabled. Enable in Settings → LuckyDate → Notifications.",
+  "permNeedNotifyDetailBodyGeneric": "Grant notification permission in system settings for local reminders.",
+  "toastEnterEventTitle": "Please enter event title",
+  "toastTitleMax": "Title max {max} characters",
+  "toastSaveFailed": "Save failed. Check network or sign-in.",
+  "toastSavedReminderPending": "Saved. Reminder inactive — enable in Settings or OS permissions, then edit this event.",
+  "toastAddedCalReminders": "Added to Calendar & Reminders",
+  "toastAddedCalNoRemindersPerm": "Added to Calendar; Reminders skipped (no permission)",
+  "toastAddedCalRemindersFail": "Added to Calendar; Reminders failed, try again",
+  "toastAddedCal": "Added to Calendar",
+  "toastCalNoPerm": "Not written to Calendar — no permission. Enable in Settings.",
+  "toastCalWriteFail": "Failed to write Calendar. Check permission or try again.",
+  "repeatSingle": "Once",
+  "repeatYearly": "Yearly",
+  "repeatMonthly": "Monthly",
+  "repeatWeekly": "Weekly",
+  "repeatDaily": "Daily",
+  "remindSameDay": "Same day",
+  "remind1DayBefore": "1 day before",
+  "remind3DaysBefore": "3 days before",
+  "remind7DaysBefore": "7 days before",
+  "remindNDaysBefore": "{n} days before",
+  "eventFormReminderRules": "Reminder rules",
+  "eventFormRepeat": "Repeat",
+  "eventFormTime": "Time",
+  "eventFormAdvance": "Advance notice",
+  "dropdownSameDay": "Same day",
+  "dropdown1DayBefore": "1 day before",
+  "dropdown3DaysBefore": "3 days before",
+  "dropdown7DaysBefore": "7 days before",
+  "commonDone": "Done",
+  "eventFormTitleEdit": "Edit event",
+  "eventFormTitleCreate": "Create event",
+  "eventFormSave": "Save",
+  "eventFormNameLabel": "Event name",
+  "eventFormNameHint": "Name this important day",
+  "eventFormDate": "Date",
+  "eventFormLunar": "Lunar",
+  "eventFormCategory": "Category",
+  "eventFormColorLabel": "Color",
+  "eventFormColorReset": "Reset",
+  "eventFormTimer": "Mode",
+  "eventFormCountdown": "Countdown",
+  "eventFormElapsed": "Elapsed",
+  "eventFormReminder": "Reminder",
+  "eventFormReminderHint": "Checks in-app notification switch and OS permission when enabled.",
+  "eventFormReminderConfigure": "Tap to set repeat, time, and advance notice.",
+  "eventFormCalendarAfterSave": "Add to system calendar after save",
+  "eventFormCalendarHint": "Requests calendar permission; writes to Calendar on save (can work with in-app reminders).",
+  "eventFormRemindersIos": "Also write to Reminders",
+  "eventFormRemindersIosHint": "Requires Reminders permission; separate from in-app notifications.",
+  "eventFormReminderDetail": "Reminder detail",
+  "eventFormReminderType": "Repeat",
+  "eventFormReminderSingle": "Once",
+  "eventFormReminderDaily": "Daily",
+  "eventFormReminderWeekly": "Weekly",
+  "eventFormReminderMonthly": "Monthly",
+  "eventFormReminderYearly": "Yearly",
+  "eventFormHardDeadline": "Hard deadline",
+  "eventFormHardDeadlineHint": "Emphasize in the list; optional 7/3/1 reminder rhythm for countdown (once).",
+  "eventFormApplyRhythm731": "Apply 7 / 3 / 1 day rhythm",
+  "eventFormRhythm731Applied": "Rhythm will apply after you save",
+  "eventFormRhythm731Requires": "Requires countdown, “Once” repeat, and reminder on",
+  "eventDetailShare": "Share",
+  "eventShareFilename": "jichen-event.png",
+  "eventShareIcsFilename": "jichen-event.ics",
+  "eventShareText": "LuckyDate · event",
+  "eventShareWebFallback": "Sharing as text on web (image export is mobile/desktop).",
+  "networkErrCancelled": "Request cancelled",
+  "networkErrConnectionTimeout": "Connection timed out",
+  "networkErrSendTimeout": "Send timed out",
+  "networkErrReceiveTimeout": "Response timed out",
+  "networkErr400": "Bad request",
+  "networkErr401": "Unauthorized",
+  "networkErr403": "Forbidden",
+  "networkErr404": "Cannot reach server",
+  "networkErr405": "Method not allowed",
+  "networkErr500": "Internal server error",
+  "networkErr502": "Bad gateway",
+  "networkErr503": "Service unavailable",
+  "networkErr505": "HTTP version not supported",
+  "networkErrUnknown": "Unknown error",
+  "lunarPickerTitle": "Pick lunar date (approx. 1901–2049)",
+  "lunarLabelYear": "Year",
+  "lunarLabelMonth": "Month",
+  "lunarLabelDay": "Day",
+  "lunarInvalidDay": "Invalid lunar date: {error}",
+  "notifChannelName": "Event reminders",
+  "notifChannelDescription": "LuckyDate",
+  "notifBodyLine": "[{app}] {title} ({mode}): {label}",
+  "calExportNotesLine": "{app} · {mode} · {cat}",
+  "exportErrLayoutIncomplete": "Could not render image (layout not ready). Try again.",
+  "exportErrEncodeFail": "Image encoding failed",
+  "exportShareFilename": "jichen-events.png",
+  "exportShareText": "LuckyDate · event list export",
+  "exportFailWithError": "Export failed: {error}",
+  "exportListSubtitle": "Event list · image export",
+  "exportTimeLabel": "Exported at",
+  "exportMetaTotalSorted": "{count} events · sorted nearest to today first",
+  "exportSolarLine": "Gregorian: {line}",
+  "exportLunarLine": "Lunar: {line}",
+  "exportTypeCategoryLine": "Type: {type} · Category: {cat}",
+  "exportTypeCountdownShort": "Countdown",
+  "exportTypeCountupShort": "Elapsed",
+  "exportTruncatedNote": "{total} events total · only the first {limit} are shown",
+  "exportFooterTagline": "LuckyDate · remember every day that matters",
+  "exportSummaryCdToday": "Countdown · Today",
+  "exportSummaryCdPast": "Countdown · target date passed",
+  "exportSummaryCdRemain": "Countdown · {n} days left",
+  "exportSummaryCuFirst": "Elapsed · start day (day 1)",
+  "exportSummaryCuNth": "Elapsed · day {n}",
+  "exportHeroToday": "Today",
+  "exportHeroFirstDay": "Day 1",
+  "exportHeroUnitDay": "days",
+  "exportCountupPrefix": "Day ",
+  "exportCountupSuffix": "",
+  "categoryMemorial": "Anniversary",
+  "categoryWork": "Work",
+  "categoryLife": "Life",
+  "builtinEventNextSaturday": "Until Saturday",
+  "builtinEventYearEnd": "Until year end",
+  "builtinEventAppleFounded": "Apple founded",
+  "dayLabelToday": "Today",
+  "dayLabelCountupFirst": "Day 1",
+  "repoErrNotLoggedInList": "Not signed in or session expired. Please sign in again.",
+  "repoErrNotLoggedInWrite": "Not signed in or session expired. Cannot sync to cloud.",
+  "repoErrNotLoggedIn": "Not signed in or session expired.",
+  "repoErrLocalDupId": "Local data error: duplicate ID.",
+  "repoErrLocalNotFound": "Event not found locally.",
+  "repoErrDbSchema": "Database schema mismatch (e.g. missing reminder_json). Run migrations and retry.",
+  "@deleteEventBody": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "@deleteCategoryBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@appBarFiltered": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "@eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@milestoneCardDesc": {
+    "placeholders": {
+      "cat": {
+        "type": "String"
+      },
+      "dateLine": {
+        "type": "String"
+      },
+      "dist": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcIntervalDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@dateCalcStartLine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcLunarLine": {
+    "placeholders": {
+      "lunar": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcEndLine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcGregorianLine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@eventDetailNotifyOn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@toastTitleMax": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "@toastFeedbackTooLong": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "@lunarInvalidDay": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@notifBodyLine": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      },
+      "mode": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "@calExportNotesLine": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      },
+      "mode": {
+        "type": "String"
+      },
+      "cat": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportFailWithError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportMetaTotalSorted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@exportSolarLine": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportLunarLine": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportTypeCategoryLine": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "cat": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportTruncatedNote": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "@exportSummaryCdRemain": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@exportSummaryCuNth": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@dashboardDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "@dashboardSelectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyYearReviewTitle": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "@historyArchivedCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  }
+}

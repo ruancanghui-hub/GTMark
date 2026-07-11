@@ -1,0 +1,6 @@
+/* Localized Info.plist - English */
+"CFBundleDisplayName" = "Jichen Calendar";
+"NSPhotoLibraryUsageDescription" = "Jichen Calendar needs photo library access to save share cards and shared images.";
+"NSPhotoLibraryAddUsageDescription" = "Jichen Calendar needs permission to save images to your photo library when you export or save content.";
+"NSLocationWhenInUseUsageDescription" = "Jichen Calendar can use your location when you choose current location for weather.";
+"NSUserTrackingUsageDescription" = "To show more relevant ads and measure ad performance, we may use your device advertising identifier after you grant permission. You can change this anytime in Settings.";

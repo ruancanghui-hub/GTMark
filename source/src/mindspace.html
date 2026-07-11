@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>MindSpace — 冥想空间</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['ui-sans-serif', 'system-ui', 'SF Pro Display', 'PingFang SC', 'sans-serif'] },
+          colors: {
+            ink: { 950: '#0c0d10', 900: '#14151a', 800: '#1e2028' },
+            mist: '#e8eaef',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html, body, #root { height: 100%; margin: 0; }
+    body { background: #0c0d10; -webkit-tap-highlight-color: transparent; touch-action: none; }
+    .sheet-enter { animation: sheetIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    @keyframes sheetIn {
+      from { transform: translateY(100%); opacity: 0.6; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .fade-bg { transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
+  </style>
+</head>
+<body class="text-mist antialiased overflow-hidden">
+  <div id="root"></div>
+
+  <script type="module">
+    import React, { useState, useRef, useCallback, useEffect, useMemo } from 'https://esm.sh/react@18.2.0';
+    import { createRoot } from 'https://esm.sh/react-dom@18.2.0/client';
+    import {
+      Wind,
+      Waves,
+      Mountain,
+      Sparkles,
+      Moon,
+      Sun,
+      Star,
+      X,
+      ChevronRight,
+      Play,
+    } from 'https://esm.sh/lucide-react@0.344.0';
+
+    /** ——— 数学：平滑步进 & 阻尼弹簧 ——— */
+    const smoothstep = (t) => t * t * (3 - 2 * t);
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const rubber = (x, min, max, strength = 0.35) => {
+      if (x < min) return min - (min - x) * strength;
+      if (x > max) return max + (x - max) * strength;
+      return x;
+    };
+
+    /** 数据源 */
+    const SPACES = [
+      {
+        id: '1',
+        title: '雾海松林',
+        tagline: '白噪音 · 雨后苔藓',
+        desc: '沉浸式针叶林氛围，远处钟声与风穿林隙。适合深度专注与睡前放松。',
+        img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80',
+        rating: 4.9,
+        activities: [
+          { Icon: Wind, label: '微风' },
+          { Icon: Waves, label: '溪流' },
+          { Icon: Mountain, label: '远山' },
+        ],
+      },
+      {
+        id: '2',
+        title: '琉璃海岸',
+        tagline: '海浪 · 海鸥远鸣',
+        desc: '潮汐节律与柔和浪涌，带盐粒气息的空间声学。唤醒或平复皆可。',
+        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80',
+        rating: 4.8,
+        activities: [
+          { Icon: Waves, label: '潮汐' },
+          { Icon: Sun, label: '日出' },
+          { Icon: Sparkles, label: '星尘' },
+        ],
+      },
+      {
+        id: '3',
+        title: '月台夜读',
+        tagline: '咖啡馆 · 翻页声',
+        desc: '旧书页、瓷器轻碰与远处爵士。城市中的私密阅读舱。',
+        img: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80',
+        rating: 4.7,
+        activities: [
+          { Icon: Moon, label: '月夜' },
+          { Icon: Sparkles, label: '暖光' },
+          { Icon: Wind, label: '通风' },
+        ],
+      },
+      {
+        id: '4',
+        title: '空山新雨',
+        tagline: '竹林 · 水滴石穿',
+        desc: '雨后青石与竹叶滴水的微观声景，东方禅意空间租赁。',
+        img: 'https://images.unsplash.com/photo-1518834348039-06b27abb4d32?w=1200&q=80',
+        rating: 5.0,
+        activities: [
+          { Icon: Mountain, label: '山岚' },
+          { Icon: Waves, label: '水滴' },
+          { Icon: Wind, label: '穿林' },
+        ],
+      },
+    ];
+
+    const H_COLLAPSE = 80;
+    const H_EXPAND = 400;
+
+    function cardHeights(offset, n) {
+      const k = Math.floor(offset);
+      const f = offset - k;
+      const arr = [];
+      for (let i = 0; i < n; i++) {
+        if (k < n - 1 && i === k) arr.push(H_EXPAND - (H_EXPAND - H_COLLAPSE) * f);
+        else if (k < n - 1 && i === k + 1) arr.push(H_COLLAPSE + (H_EXPAND - H_COLLAPSE) * f);
+        else if (k === n - 1 && i === n - 1) arr.push(H_EXPAND);
+        else arr.push(H_COLLAPSE);
+      }
+      return arr;
+    }
+
+    function expandT(offset, i, n) {
+      const h = cardHeights(offset, n)[i];
+      return (h - H_COLLAPSE) / (H_EXPAND - H_COLLAPSE);
+    }
+
+    /** 背景混合权重 */
+    function bgBlend(offset, n) {
+      const k = clamp(Math.floor(offset), 0, n - 1);
+      const f = offset - k;
+      const next = Math.min(k + 1, n - 1);
+      return { a: k, b: next, t: k === next ? 0 : f };
+    }
+
+    function MindSpaceApp() {
+      const n = SPACES.length;
+      const [offset, setOffset] = useState(0);
+      const offsetRef = useRef(0);
+      const velRef = useRef(0);
+      const draggingRef = useRef(false);
+      const lastYRef = useRef(0);
+      const lastTRef = useRef(0);
+      const histRef = useRef([]);
+      const rafRef = useRef(0);
+      const [detailId, setDetailId] = useState(null);
+
+      useEffect(() => {
+        offsetRef.current = offset;
+      }, [offset]);
+
+      const heights = useMemo(() => cardHeights(offset, n), [offset, n]);
+      const blend = useMemo(() => bgBlend(offset, n), [offset, n]);
+
+      const stopSpring = () => {
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        rafRef.current = 0;
+      };
+
+      const springTo = useCallback(
+        (target) => {
+          stopSpring();
+          const tick = () => {
+            const cur = offsetRef.current;
+            const diff = target - cur;
+            velRef.current = velRef.current * 0.88 + diff * 0.14;
+            velRef.current *= 0.94;
+            let next = cur + velRef.current;
+            next = clamp(next, 0, n - 1);
+            if (Math.abs(diff) < 0.002 && Math.abs(velRef.current) < 0.004) {
+              setOffset(target);
+              offsetRef.current = target;
+              velRef.current = 0;
+              return;
+            }
+            setOffset(next);
+            offsetRef.current = next;
+            rafRef.current = requestAnimationFrame(tick);
+          };
+          rafRef.current = requestAnimationFrame(tick);
+        },
+        [n]
+      );
+
+      const onPointerDown = (e) => {
+        draggingRef.current = true;
+        lastYRef.current = e.clientY;
+        lastTRef.current = performance.now();
+        histRef.current = [];
+        velRef.current = 0;
+        stopSpring();
+        e.currentTarget.setPointerCapture(e.pointerId);
+      };
+
+      const onPointerMove = (e) => {
+        if (!draggingRef.current) return;
+        const y = e.clientY;
+        const dy = y - lastYRef.current;
+        lastYRef.current = y;
+        const t = performance.now();
+        const dt = Math.max(8, t - lastTRef.current);
+        lastTRef.current = t;
+        const vy = dy / dt;
+        histRef.current.push(vy);
+        if (histRef.current.length > 5) histRef.current.shift();
+
+        const sensitivity = 0.0042;
+        let next = offsetRef.current - dy * sensitivity;
+        next = rubber(next, 0, n - 1, 0.28);
+        setOffset(next);
+        offsetRef.current = next;
+      };
+
+      const endDrag = () => {
+        draggingRef.current = false;
+        const avgV =
+          histRef.current.length > 0
+            ? histRef.current.reduce((a, b) => a + b, 0) / histRef.current.length
+            : 0;
+        let target = Math.round(offsetRef.current - avgV * 18);
+        target = clamp(target, 0, n - 1);
+        velRef.current = (target - offsetRef.current) * 0.06;
+        springTo(target);
+      };
+
+      const onPointerUp = () => {
+        endDrag();
+      };
+
+      const detail = detailId ? SPACES.find((s) => s.id === detailId) : null;
+
+      const imgA = SPACES[blend.a]?.img;
+      const imgB = SPACES[blend.b]?.img;
+      const bgOpacity = blend.a === blend.b ? 1 : smoothstep(blend.t);
+
+      return (
+        <div className="relative h-full w-full overflow-hidden bg-ink-950">
+          {/* 背景层：双图淡入淡出 */}
+          <div className="pointer-events-none absolute inset-0">
+            <div
+              className="fade-bg absolute inset-0 bg-cover bg-center scale-110"
+              style={{
+                backgroundImage: `url(${imgA})`,
+                opacity: 1 - bgOpacity * 0.85,
+                filter: 'brightness(0.45) saturate(1.05)',
+              }}
+            />
+            {blend.a !== blend.b && (
+              <div
+                className="fade-bg absolute inset-0 bg-cover bg-center scale-110"
+                style={{
+                  backgroundImage: `url(${imgB})`,
+                  opacity: bgOpacity * 0.92,
+                  filter: 'brightness(0.45) saturate(1.05)',
+                }}
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-b from-ink-950/80 via-ink-950/50 to-ink-950" />
+          </div>
+
+          <div className="relative z-10 flex h-full flex-col px-4 pb-safe pt-14 md:px-8">
+            <header className="mb-6 flex items-end justify-between">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-[0.35em] text-white/40">MindSpace</p>
+                <h1 className="mt-1 text-2xl font-light tracking-tight text-white md:text-3xl">冥想空间租赁</h1>
+              </div>
+              <Sparkles className="h-6 w-6 text-white/50" strokeWidth={1.25} />
+            </header>
+
+            <div
+              className="flex min-h-0 flex-1 touch-none flex-col gap-2 select-none"
+              onPointerDown={onPointerDown}
+              onPointerMove={onPointerMove}
+              onPointerUp={onPointerUp}
+              onPointerCancel={onPointerUp}
+              style={{ cursor: 'grab' }}
+            >
+              {SPACES.map((space, i) => {
+                const h = heights[i];
+                const tExpand = expandT(offset, i, n);
+                const showBody = tExpand > 0.88;
+                const parallax = (1 - tExpand) * 28;
+
+                return (
+                  <div
+                    key={space.id}
+                    className="relative shrink-0 overflow-hidden rounded-2xl border border-white/[0.08] bg-ink-900/40 shadow-2xl backdrop-blur-md transition-[height] duration-75 ease-out"
+                    style={{
+                      height: h,
+                      boxShadow: '0 24px 80px rgba(0,0,0,0.45)',
+                    }}
+                  >
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-100 ease-out"
+                      style={{
+                        backgroundImage: `url(${space.img})`,
+                        transform: `scale(${1.08 + tExpand * 0.04}) translateY(${parallax}px)`,
+                        filter: `brightness(${0.42 + tExpand * 0.38}) saturate(${0.95 + tExpand * 0.1})`,
+                      }}
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30"
+                      style={{ opacity: 0.55 + (1 - tExpand) * 0.35 }}
+                    />
+
+                    <div className="relative flex h-full flex-col justify-end p-4 md:p-5">
+                      <div className="flex items-end justify-between gap-3">
+                        <div className="min-w-0 flex-1">
+                          <h2
+                            className={`truncate font-medium tracking-wide text-white transition-all duration-200 ${
+                              tExpand > 0.2 ? 'text-lg md:text-xl' : 'text-sm'
+                            }`}
+                          >
+                            {space.title}
+                          </h2>
+                          <div
+                            className="overflow-hidden transition-all duration-300 ease-out"
+                            style={{
+                              maxHeight: showBody ? 120 : 0,
+                              opacity: showBody ? 1 : 0,
+                              transform: showBody ? 'translateY(0)' : 'translateY(8px)',
+                            }}
+                          >
+                            <p className="mt-2 line-clamp-2 text-xs font-light leading-relaxed text-white/75 md:text-sm">
+                              {space.tagline}
+                            </p>
+                            <button
+                              type="button"
+                              className="mt-4 flex items-center gap-2 rounded-full bg-white/12 px-4 py-2.5 text-xs font-medium text-white backdrop-blur-md transition hover:bg-white/20 active:scale-[0.98]"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setDetailId(space.id);
+                              }}
+                            >
+                              <Play className="h-4 w-4 fill-white" />
+                              进入空间
+                              <ChevronRight className="h-4 w-4 opacity-70" />
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          className="flex shrink-0 flex-col items-end gap-1 transition-opacity duration-200"
+                          style={{ opacity: 0.35 + tExpand * 0.65 }}
+                        >
+                          <div className="flex items-center gap-0.5 text-amber-200/90">
+                            <Star className="h-3.5 w-3.5 fill-amber-400/90 text-amber-400" />
+                            <span className="text-xs font-medium">{space.rating}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <p className="mt-3 pb-4 text-center text-[10px] text-white/35">
+              拖拽列表切换空间 · 展开后进入详情
+            </p>
+          </div>
+
+          {/* 详情：底部全屏 sheet */}
+          {detail && (
+            <div
+              className="fixed inset-0 z-50 flex flex-col justify-end bg-black/70 backdrop-blur-sm"
+              role="presentation"
+              onClick={() => setDetailId(null)}
+            >
+              <div
+                className="sheet-enter max-h-[92vh] overflow-y-auto rounded-t-3xl bg-ink-900 text-mist shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative h-56 w-full overflow-hidden md:h-72">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${detail.img})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/20 to-transparent" />
+                  <button
+                    type="button"
+                    className="absolute right-4 top-4 rounded-full bg-black/40 p-2 text-white backdrop-blur-md transition hover:bg-black/55"
+                    aria-label="关闭"
+                    onClick={() => setDetailId(null)}
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                  <div className="absolute bottom-4 left-5 right-5">
+                    <h3 className="text-2xl font-light text-white">{detail.title}</h3>
+                    <div className="mt-2 flex items-center gap-2 text-amber-200">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} className="h-4 w-4 fill-amber-400/90 text-amber-400" />
+                      ))}
+                      <span className="ml-1 text-sm text-white/80">{detail.rating}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="px-5 pb-10 pt-6">
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">推荐活动</p>
+                  <div className="mt-4 flex gap-4 overflow-x-auto pb-2 scrollbar-none">
+                    {detail.activities.map(({ Icon, label }) => (
+                      <div
+                        key={label}
+                        className="flex shrink-0 flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-4"
+                      >
+                        <Icon className="h-7 w-7 text-white/85" strokeWidth={1.25} />
+                        <span className="text-[11px] text-white/65">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <h4 className="mt-8 text-sm font-medium text-white/90">空间介绍</h4>
+                  <p className="mt-3 text-sm leading-relaxed text-white/65">{detail.desc}</p>
+                  <button
+                    type="button"
+                    className="mt-8 w-full rounded-2xl bg-white py-4 text-sm font-semibold text-ink-950 transition hover:bg-white/90 active:scale-[0.99]"
+                  >
+                    预约此空间
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    createRoot(document.getElementById('root')).render(
+      React.createElement(React.StrictMode, null, React.createElement(MindSpaceApp))
+    );
+  </script>
+</body>
+</html>

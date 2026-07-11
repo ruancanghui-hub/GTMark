@@ -1,0 +1,6 @@
+/* Localized Info.plist - 简体中文 */
+"CFBundleDisplayName" = "吉辰万年历";
+"NSPhotoLibraryUsageDescription" = "吉辰万年历需要访问相册以保存分享卡片图片。";
+"NSPhotoLibraryAddUsageDescription" = "吉辰万年历需要权限以将分享卡片保存到您的相册。";
+"NSLocationWhenInUseUsageDescription" = "吉辰万年历在您查看天气或选择城市时，可使用定位获取当地预报。";
+"NSUserTrackingUsageDescription" = "为向您展示更相关的广告并衡量广告效果，我们可能在征得同意后使用设备广告标识符。您可随时在系统设置中更改此授权。";

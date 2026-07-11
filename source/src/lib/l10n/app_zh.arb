@@ -1,0 +1,624 @@
+{
+  "@@locale": "zh",
+  "appTitle": "吉辰万年历",
+  "appNameShort": "吉辰万年历",
+  "commonCancel": "取消",
+  "commonDelete": "删除",
+  "commonAdd": "添加",
+  "commonSave": "保存",
+  "commonSubmit": "提交",
+  "commonClose": "关闭",
+  "commonOk": "确定",
+  "notFoundTitle": "页面不存在",
+  "notFoundBackHome": "回到首页",
+  "splashTagline": "查日期 · 择吉 · 提醒 · 发祝福",
+  "splashMessage": "查日期 · 择吉 · 提醒 · 发祝福，重要日子不再错过。",
+  "splashLoading": "加载中…",
+  "splashVideoUnavailable": "视频暂不可用",
+  "settingsTitle": "设置",
+  "settingsSectionDateDisplay": "日期与显示",
+  "settingsHomeCardOrderTitle": "首页卡片主副标题顺序",
+  "settingsHomeCardOrderSubtitle": "控制公历、农历两行谁先展示",
+  "settingsSolarFirst": "公历优先",
+  "settingsLunarFirst": "农历优先",
+  "settingsSectionNotify": "通知",
+  "settingsNotifyMasterTitle": "通知总开关",
+  "settingsNotifyMasterSubtitle": "关闭后不再调度新提醒（已保存的提醒配置仍保留）",
+  "settingsSectionHabitWidget": "习惯与桌面小组件",
+  "settingsWidgetModeTitle": "小组件主展示事件",
+  "settingsWidgetModeNearest": "最近的截止日",
+  "settingsWidgetModeTodayFirst": "与「今日」列表首条一致",
+  "settingsWidgetModePinnedFirst": "7 日内置顶，否则最近截止",
+  "settingsDailyDigestTitle": "每日摘要通知",
+  "settingsDailyDigestSubtitle": "开启后每天最多一条；需打开上方通知总开关。",
+  "settingsDailyDigestTime": "摘要时间",
+  "notifDigestChannelName": "每日摘要",
+  "notifDigestChannelDescription": "在设置中开启后，每天最多一条。",
+  "notifDigestTitle": "今日",
+  "notifDigestBody": "未来 7 天内有 {count} 个倒数。",
+  "@notifDigestBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsSectionLegal": "法律与帮助",
+  "settingsPrivacy": "隐私政策",
+  "settingsTerms": "用户协议",
+  "settingsFeedback": "意见反馈",
+  "settingsSectionAbout": "关于",
+  "settingsAboutApp": "关于 吉辰万年历",
+  "settingsVersion": "版本 {version}",
+  "settingsAboutBlurb": "重要日期管理与本地提醒。使用邮箱登录时，事件数据同步至您配置的云端服务。",
+  "settingsSectionLanguage": "语言",
+  "settingsLanguageEnglish": "English",
+  "settingsLanguageChinese": "简体中文",
+  "copyrightLegalese": "© 2026",
+  "navCountdownDay": "倒数日",
+  "navCountdownBook": "倒数本",
+  "navHistoryToday": "历史上的今天",
+  "navProfile": "我的",
+  "sidePanelGuest": "本地用户",
+  "sidePanelOpenSettings": "打开设置",
+  "appBarTitleDays": "吉辰万年历 · 倒数日",
+  "appBarTitleBook": "倒数本",
+  "appBarTitleHistory": "历史上的今天",
+  "appBarTitleProfile": "我的",
+  "appBarTitleDefault": "吉辰万年历",
+  "appBarFiltered": "吉辰万年历 · 仅 {label}",
+  "deleteEventTitle": "删除事件？",
+  "deleteEventBody": "「{title}」将被永久删除。",
+  "deleteCategoryTitle": "删除分类？",
+  "deleteCategoryBody": "将删除「{name}」。仅当该分类下无事件时可删除。",
+  "emptyEventsFiltered": "该分类下暂无事件，点击右上角 + 添加或切换筛选",
+  "emptyEvents": "暂无事件，点击右上角 + 添加",
+  "searchEventsHint": "搜索事件...",
+  "searchClearTooltip": "清空搜索",
+  "dashboardQuickPickAll": "全部",
+  "dashboardQuickPickSectionHint": "点选事件名称可快速筛选，下方仍可输入关键字。",
+  "dashboardSearchKeywordHint": "关键字",
+  "dashboardSearchPanelOpen": "搜索与筛选",
+  "dashboardSearchPanelClose": "收起搜索",
+  "dashboardSearchActiveBadge": "筛选中",
+  "todaySummaryTitle": "今日",
+  "todaySummaryEmpty": "暂无「今天起 7 天内」的倒数事件。",
+  "todaySummaryCreateEvent": "新建事件",
+  "todaySummaryShowAllCategories": "全部分类",
+  "todaySummaryOnlyCurrentCategory": "与首页分类筛选一致",
+  "dashboardTodaySummaryButton": "今日",
+  "emptySearchResults": "没有找到匹配的事件",
+  "onboardingHint": "新建事件，选择分类",
+  "addCategoryTitle": "添加分类",
+  "categoryNameLabel": "名称",
+  "categoryIconLabel": "图标（emoji）",
+  "filterByCategory": "按分类查看",
+  "tooltipAddCategory": "添加分类",
+  "sectionCategoryShelf": "分类书架",
+  "sectionListFilter": "列表与筛选",
+  "sectionTools": "工具",
+  "toolDateCalculator": "日期计算器",
+  "toolMilestone": "里程碑",
+  "allEvents": "全部事件",
+  "tooltipDeleteCategory": "删除分类",
+  "newEvent": "新建事件",
+  "eventCount": "{count} 条",
+  "archiveTitle": "归档与隐藏",
+  "archivePlaceholder": "归档功能开发中，敬请期待",
+  "historySampleData": "当前为内置示例数据（网络不可用或该日无缓存时）",
+  "historyWikimedia": "史实条目来自维基媒体项目",
+  "historySupabaseAi": "含 Supabase AI 补充",
+  "historyIdaily": "iDaily 每日环球视野",
+  "historyExploreTagline": "探索历史上的今天，发现那些改变世界的瞬间。",
+  "historyHoliday": "节日",
+  "historyEvents": "历史事件",
+  "historyEmptySupabase": "暂无数据。请下拉刷新，或稍后重试（维基媒体 API 需网络可达）。已配置 Supabase 时将尝试合并 AI 补充。",
+  "historyEmpty": "暂无数据。请下拉刷新，或稍后重试（史实内容来自维基媒体 API，需网络可达）。",
+  "dashboardTodayFocus": "今日焦点",
+  "dashboardDaysLeft": "{days} 天",
+  "dashboardSelectedCount": "已选 {count} 项",
+  "dashboardCancelSelection": "取消选择",
+  "dashboardBatchMarkCompleted": "批量标记完成",
+  "dashboardBatchArchive": "批量归档",
+  "dashboardBatchUpdateCategory": "批量改分类",
+  "dashboardBatchCategoryTitle": "批量修改分类",
+  "dashboardBatchUpdateReminder": "批量改提醒",
+  "dashboardBatchReminderTitle": "批量修改提醒预设",
+  "dashboardFilterAll": "全部",
+  "dashboardFilterActive": "进行中",
+  "dashboardFilterCompleted": "已完成",
+  "historyYearReviewTitle": "{year} 年度回顾（雏形）",
+  "historySummaryTotal": "总事件",
+  "historySummaryActive": "进行中",
+  "historySummaryCompleted": "已完成",
+  "historySummaryArchived": "已归档",
+  "historyCompletionRate": "完成率",
+  "historyCategoryRatio": "分类占比",
+  "historyArchivedEvents": "已归档事件",
+  "historyArchivedCount": "共 {count} 条",
+  "historyArchivedEmpty": "暂无归档事件",
+  "historyRestore": "恢复",
+  "historyDelete": "删除",
+  "profileSectionCommon": "常用",
+  "profileSettings": "设置",
+  "profileFeedback": "意见反馈",
+  "profileAccountSecurity": "账号与安全",
+  "profileExportPng": "导出为图片分享",
+  "toastExportOk": "已生成图片，请在分享面板中保存或发送",
+  "toastExportEmpty": "暂无事件可导出",
+  "profileSectionAboutAccount": "关于与账号",
+  "profilePrivacy": "隐私政策",
+  "profileLogout": "退出登录",
+  "profileDeleteAccount": "注销账号",
+  "profileDeleteAccountConfirmTitle": "申请注销账号",
+  "profileDeleteAccountConfirmBody": "确认后将拉起邮件发送到客服邮箱，我们会按隐私政策处理你的注销申请。",
+  "profileDeleteAccountEmailSubject": "吉辰万年历 账号注销申请",
+  "profileDeleteAccountEmailFallback": "无法打开邮箱应用，请手动发送邮件到 ruancanghui@163.com 申请注销。",
+  "milestoneTitle": "里程碑",
+  "milestoneEmpty": "暂无事件，请先在首页创建",
+  "milestoneSubtitle": "按与今天的时间距离查看你的事件（近到远）。",
+  "milestoneSection7d": "1～7 天",
+  "milestoneSection30d": "8～30 天",
+  "milestoneSectionFar": "更远",
+  "milestoneCardDesc": "{cat} · {dateLine} · 距今日 {dist} 天 · {label}",
+  "milestoneReached": "已到达里程碑！",
+  "milestoneApproaching": "即将到达里程碑",
+  "dateCalcTitle": "日期计算",
+  "dateCalcTabInterval": "日期间隔",
+  "dateCalcTabShift": "日期推算",
+  "dateCalcStartLunarPicker": "起始日用农历选择",
+  "dateCalcStart": "起始日",
+  "dateCalcEndLunarPicker": "结束日用农历选择",
+  "dateCalcEnd": "结束日",
+  "dateCalcInclusive": "包含起止日",
+  "dateCalcCompute": "计算",
+  "dateCalcIntervalDays": "间隔：{n} 天",
+  "dateCalcStartLine": "起始：{date}",
+  "dateCalcLunarLine": "农历：{lunar}",
+  "dateCalcEndLine": "结束：{date}",
+  "dateCalcBaseLunarPicker": "基准日用农历选择",
+  "dateCalcBase": "基准日",
+  "dateCalcDaysLabel": "天数",
+  "dateCalcDaysHint": "整数",
+  "dateCalcBefore": "N 天前",
+  "dateCalcAfter": "N 天后",
+  "dateCalcResult": "推算结果",
+  "dateCalcGregorianLine": "公历：{date}",
+  "loginTitleSignIn": "登录",
+  "loginTitleSignUp": "注册",
+  "loginEmail": "邮箱",
+  "loginPassword": "密码",
+  "loginCtaEnter": "登录并进入首页",
+  "loginCtaRegister": "注册并进入首页",
+  "loginSwitchToSignIn": "已有账号？去登录",
+  "loginSwitchToSignUp": "没有账号？注册",
+  "loginSupabaseMissing": "未配置 Supabase（SUPABASE_URL / SUPABASE_ANON_KEY）。将使用演示登录，事件不会上云。",
+  "loginDemo": "演示登录并进入首页",
+  "eventDetailTitle": "事件",
+  "eventDetailNotFound": "未找到该事件或列表未同步",
+  "eventDetailNotifyOff": "未开启",
+  "eventDetailNotifyOn": "已开启 · {time}",
+  "eventDetailDeleteTitle": "删除事件？",
+  "eventDetailDeleteBody": "此操作不可撤销。",
+  "eventDetailTargetDate": "目标日",
+  "eventDetailLunar": "农历",
+  "eventDetailMode": "模式",
+  "eventDetailModeCountdown": "倒计时",
+  "eventDetailModeElapsed": "正计时",
+  "eventDetailReminder": "提醒",
+  "klingLoading": "加载中…",
+  "legalPrivacyTitle": "隐私政策",
+  "legalTermsTitle": "用户协议",
+  "legalPrivacyBody": "完整正文见应用内文档；摘要：我们按最小必要原则处理数据，详情以本页 Markdown 全文为准。",
+  "legalTermsBody": "完整正文见应用内文档；使用本应用即表示您同意遵守用户协议全文。",
+  "legalMdLoadError": "文档加载失败，请稍后重试或重启应用。",
+  "legalConsentTitle": "欢迎使用 吉辰万年历",
+  "legalConsentMessage": "为使用本应用，请阅读并同意《用户协议》与《隐私政策》。您可点击下方链接查看全文；同意后将继续进入应用。",
+  "legalConsentAgree": "同意并继续",
+  "legalConsentDisagree": "不同意并退出",
+  "legalConsentViewTerms": "查看《用户协议》",
+  "legalConsentViewPrivacy": "查看《隐私政策》",
+  "accountSecurityTitle": "账号与安全",
+  "accountLoginPrompt": "登录后可编辑昵称与查看账号信息。",
+  "accountGoLogin": "去登录",
+  "accountUserId": "用户 ID",
+  "accountEmail": "邮箱",
+  "accountLoginMethod": "登录方式",
+  "accountLoginMethodSupabase": "Supabase 邮箱账号",
+  "accountNickname": "昵称",
+  "accountNicknameHint": "仅保存在本机用户资料中",
+  "toastNicknameEmpty": "昵称不能为空",
+  "toastNicknameTooLong": "昵称最多 32 字",
+  "toastSaved": "已保存",
+  "feedbackTitle": "意见反馈",
+  "feedbackIntro": "请选择类型并描述问题或建议。内容仅保存在本设备，便于后续版本排查与改进。",
+  "feedbackTypeLabel": "反馈类型",
+  "feedbackContentLabel": "反馈内容",
+  "feedbackContentHint": "请尽量说明操作步骤、期望与实际现象",
+  "feedbackTypeFeature": "功能建议",
+  "feedbackTypeBug": "Bug 反馈",
+  "feedbackTypeAccount": "账号与同步",
+  "feedbackTypeOther": "其他",
+  "toastFeedbackEmpty": "请填写反馈内容",
+  "toastFeedbackTooLong": "内容最多 {max} 字",
+  "toastFeedbackSavedLocal": "已保存到本机",
+  "permNotifyMasterOffTitle": "应用内通知总开关已关闭",
+  "permNotifyMasterOffBody": "请先在「设置」中打开「通知总开关」，才能为事件安排提醒。",
+  "permGoEnable": "去开启",
+  "permNeedSystemNotifyTitle": "需要系统通知权限",
+  "permNeedSystemNotifyBodyIos": "系统已关闭通知。请到「设置 → 吉辰万年历 → 通知」中开启。",
+  "permNeedSystemNotifyBodyGeneric": "需要系统通知权限才能提醒重要日期。",
+  "permOpenSystemSettings": "打开系统设置",
+  "permNeedCalendarTitle": "需要日历访问权限",
+  "permNeedCalendarBodyIos": "系统已拒绝日历权限。请到「设置 → 吉辰万年历」中开启「日历」。",
+  "permNeedCalendarBodyGeneric": "将重要日期写入系统日历时，需要日历访问权限。",
+  "permNeedRemindersTitle": "需要提醒事项访问权限",
+  "permNeedRemindersBodyIos": "系统已拒绝提醒事项权限。请到「设置 → 吉辰万年历」中开启「提醒事项」。",
+  "permNeedRemindersBodyGeneric": "将日期同步到系统「提醒事项」时需要该权限。",
+  "permNotifyMasterOffSaveBody": "需要先在应用内打开「通知总开关」，才能为事件安排本地提醒。\n\n你也可以先保存事件，稍后在「设置」中开启通知后再编辑本事件。",
+  "permSaveWithoutReminder": "仍保存，暂不提醒",
+  "permNeedNotifyDetailTitle": "需要系统通知权限",
+  "permNeedNotifyDetailBodyIos": "系统已关闭通知或未再询问。请到「设置 → 吉辰万年历 → 通知」中开启，否则无法准时提醒。",
+  "permNeedNotifyDetailBodyGeneric": "需要系统「通知」权限才能生成本地提醒。请在系统设置中为本应用开启通知。",
+  "toastEnterEventTitle": "请输入事件名称",
+  "toastTitleMax": "名称最多 {max} 字",
+  "toastSaveFailed": "保存失败，请检查网络或登录状态",
+  "toastSavedReminderPending": "已保存。提醒未生效：可稍后在「设置」或系统通知权限中开启后，再编辑本事件。",
+  "toastAddedCalReminders": "已加入日历与提醒事项",
+  "toastAddedCalNoRemindersPerm": "已加入日历；提醒事项未写入：无提醒事项权限",
+  "toastAddedCalRemindersFail": "已加入日历；提醒事项写入失败，请稍后重试",
+  "toastAddedCal": "已加入日历",
+  "toastCalNoPerm": "未写入日历：无日历权限，请到系统设置中开启",
+  "toastCalWriteFail": "写入系统日历失败，请检查权限或稍后重试",
+  "repeatSingle": "单次",
+  "repeatYearly": "每年",
+  "repeatMonthly": "每月",
+  "repeatWeekly": "每周",
+  "repeatDaily": "每日",
+  "remindSameDay": "当天",
+  "remind1DayBefore": "提前1天",
+  "remind3DaysBefore": "提前3天",
+  "remind7DaysBefore": "提前7天",
+  "remindNDaysBefore": "提前{n}天",
+  "eventFormReminderRules": "提醒规则",
+  "eventFormRepeat": "重复",
+  "eventFormTime": "时间",
+  "eventFormAdvance": "提前",
+  "dropdownSameDay": "当天",
+  "dropdown1DayBefore": "提前 1 天",
+  "dropdown3DaysBefore": "提前 3 天",
+  "dropdown7DaysBefore": "提前 7 天",
+  "commonDone": "完成",
+  "eventFormTitleEdit": "编辑事件",
+  "eventFormTitleCreate": "创建事件",
+  "eventFormSave": "保存",
+  "eventFormNameLabel": "事件名称",
+  "eventFormNameHint": "请输入重要日子的名称",
+  "eventFormDate": "日期",
+  "eventFormLunar": "农历",
+  "eventFormCategory": "分类",
+  "eventFormColorLabel": "颜色",
+  "eventFormColorReset": "重置",
+  "eventFormTimer": "计时",
+  "eventFormCountdown": "倒计时",
+  "eventFormElapsed": "正计时",
+  "eventFormReminder": "提醒",
+  "eventFormReminderHint": "开启时将检查应用内通知开关与系统通知权限",
+  "eventFormReminderConfigure": "点按设置重复、时间与提前",
+  "eventFormCalendarAfterSave": "保存后加入系统日历",
+  "eventFormCalendarHint": "开启时会请求日历权限；保存后直接写入系统日历（可与上方应用内提醒并存）",
+  "eventFormRemindersIos": "同时写入提醒事项",
+  "eventFormRemindersIosHint": "需单独授权提醒事项；与上方「应用内通知提醒」无关",
+  "eventFormReminderDetail": "提醒详情",
+  "eventFormReminderType": "重复",
+  "eventFormReminderSingle": "仅一次",
+  "eventFormReminderDaily": "每天",
+  "eventFormReminderWeekly": "每周",
+  "eventFormReminderMonthly": "每月",
+  "eventFormReminderYearly": "每年",
+  "eventFormHardDeadline": "硬截止",
+  "eventFormHardDeadlineHint": "在列表中更醒目；倒数且「仅一次」时可一键写入 7/3/1 天节奏提醒。",
+  "eventFormApplyRhythm731": "应用 7 / 3 / 1 天节奏",
+  "eventFormRhythm731Applied": "已选择节奏，保存后写入提醒",
+  "eventFormRhythm731Requires": "需为倒数、重复为「仅一次」且已开启提醒",
+  "eventDetailShare": "分享",
+  "eventShareFilename": "jichen-event.png",
+  "eventShareIcsFilename": "jichen-event.ics",
+  "eventShareText": "吉辰万年历 · 事件",
+  "eventShareWebFallback": "网页版暂以文字分享（图片分享请用手机或桌面端）。",
+  "networkErrCancelled": "请求取消",
+  "networkErrConnectionTimeout": "连接超时",
+  "networkErrSendTimeout": "请求超时",
+  "networkErrReceiveTimeout": "响应超时",
+  "networkErr400": "请求语法错误",
+  "networkErr401": "没有权限",
+  "networkErr403": "服务器拒绝执行",
+  "networkErr404": "无法连接服务器",
+  "networkErr405": "请求方法被禁止",
+  "networkErr500": "服务器内部错误",
+  "networkErr502": "无效的请求",
+  "networkErr503": "服务器挂了",
+  "networkErr505": "不支持HTTP协议请求",
+  "networkErrUnknown": "未知错误",
+  "lunarPickerTitle": "选择农历（约 1901–2049）",
+  "lunarLabelYear": "年",
+  "lunarLabelMonth": "月",
+  "lunarLabelDay": "日",
+  "lunarInvalidDay": "无效农历日：{error}",
+  "notifChannelName": "事件提醒",
+  "notifChannelDescription": "吉辰万年历",
+  "notifBodyLine": "【{app}】{title}（{mode}）：{label}",
+  "calExportNotesLine": "{app} · {mode} · {cat}",
+  "exportErrLayoutIncomplete": "无法生成图片（布局未完成），请重试",
+  "exportErrEncodeFail": "图片编码失败",
+  "exportShareFilename": "jichen-events.png",
+  "exportShareText": "吉辰万年历 · 事件导出",
+  "exportFailWithError": "导出失败：{error}",
+  "exportListSubtitle": "事件清单 · 图片导出",
+  "exportTimeLabel": "导出时间",
+  "exportMetaTotalSorted": "共 {count} 条事件 · 已按与「今天」的距离从近到远排序",
+  "exportSolarLine": "公历：{line}",
+  "exportLunarLine": "农历：{line}",
+  "exportTypeCategoryLine": "类型：{type}  ·  分类：{cat}",
+  "exportTypeCountdownShort": "倒数日",
+  "exportTypeCountupShort": "正数日",
+  "exportTruncatedNote": "共 {total} 条事件，图中仅展示前 {limit} 条",
+  "exportFooterTagline": "吉辰万年历 · 记录每一个重要日子",
+  "exportSummaryCdToday": "倒数日 · 就是今天",
+  "exportSummaryCdPast": "倒数日 · 目标日期已过",
+  "exportSummaryCdRemain": "倒数日 · 还剩 {n} 天",
+  "exportSummaryCuFirst": "正数日 · 起始日（第 1 天）",
+  "exportSummaryCuNth": "正数日 · 第 {n} 天",
+  "exportHeroToday": "今天",
+  "exportHeroFirstDay": "第 1 天",
+  "exportHeroUnitDay": "天",
+  "exportCountupPrefix": "第",
+  "exportCountupSuffix": "天",
+  "categoryMemorial": "纪念日",
+  "categoryWork": "工作",
+  "categoryLife": "生活",
+  "builtinEventNextSaturday": "距离星期六",
+  "builtinEventYearEnd": "距离今年结束",
+  "builtinEventAppleFounded": "Apple 成立日",
+  "dayLabelToday": "今天",
+  "dayLabelCountupFirst": "第1天",
+  "repoErrNotLoggedInList": "未登录或会话已失效，请重新登录",
+  "repoErrNotLoggedInWrite": "未登录或会话已失效，无法写入云端",
+  "repoErrNotLoggedIn": "未登录或会话已失效",
+  "repoErrLocalDupId": "本地数据异常：ID 重复",
+  "repoErrLocalNotFound": "本地未找到该事件",
+  "repoErrDbSchema": "数据库缺少字段（如 reminder_json），请执行 supabase/migrations 后重试",
+  "@deleteEventBody": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "@deleteCategoryBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@appBarFiltered": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "@eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@milestoneCardDesc": {
+    "placeholders": {
+      "cat": {
+        "type": "String"
+      },
+      "dateLine": {
+        "type": "String"
+      },
+      "dist": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcIntervalDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@dateCalcStartLine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcLunarLine": {
+    "placeholders": {
+      "lunar": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcEndLine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@dateCalcGregorianLine": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@eventDetailNotifyOn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@toastTitleMax": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "@toastFeedbackTooLong": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "@lunarInvalidDay": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@notifBodyLine": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      },
+      "mode": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "@calExportNotesLine": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      },
+      "mode": {
+        "type": "String"
+      },
+      "cat": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportFailWithError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportMetaTotalSorted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@exportSolarLine": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportLunarLine": {
+    "placeholders": {
+      "line": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportTypeCategoryLine": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "cat": {
+        "type": "String"
+      }
+    }
+  },
+  "@exportTruncatedNote": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "@exportSummaryCdRemain": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@exportSummaryCuNth": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "@dashboardDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "@dashboardSelectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyYearReviewTitle": {
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "@historyArchivedCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  }
+}

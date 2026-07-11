@@ -1,0 +1,1535 @@
+{
+  "version": 1,
+  "meta": {
+    "description": "吉辰万年历 · 离线诗句库 v1 全量",
+    "offline": true
+  },
+  "solar_terms": {
+    "st_lichun": {
+      "name": "立春",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_lichun-01",
+          "text": "律回岁晚冰霜少，春到人间草亦苏。",
+          "author": "苏轼",
+          "source": "立春",
+          "default": true
+        },
+        {
+          "id": "st_lichun-02",
+          "text": "春已归来，看美人头上，袅袅春幡。",
+          "author": "辛弃疾",
+          "source": "汉宫春",
+          "default": false
+        }
+      ],
+      "figure": {
+        "name": "苏轼",
+        "era": "宋"
+      }
+    },
+    "st_yushui": {
+      "name": "雨水",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_yushui-01",
+          "text": "好雨知时节，当春乃发生。",
+          "author": "杜甫",
+          "source": "春夜喜雨",
+          "default": true
+        },
+        {
+          "id": "st_yushui-02",
+          "text": "天街小雨润如酥，草色遥看近却无。",
+          "author": "韩愈",
+          "source": "早春呈水部张十八员外",
+          "default": false
+        }
+      ],
+      "figure": {
+        "name": "杜甫",
+        "era": "唐"
+      }
+    },
+    "st_jingzhe": {
+      "name": "惊蛰",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_jingzhe-01",
+          "text": "微雨众卉新，一雷惊蛰始。",
+          "author": "韦应物",
+          "source": "观田家",
+          "default": true
+        },
+        {
+          "id": "st_jingzhe-02",
+          "text": "阳气初惊蛰，鸿雁来。",
+          "author": "元稹",
+          "source": "惊蛰",
+          "default": false
+        }
+      ]
+    },
+    "st_chunfen": {
+      "name": "春分",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_chunfen-01",
+          "text": "等闲识得东风面，万紫千红总是春。",
+          "author": "朱熹",
+          "source": "春日",
+          "default": true
+        },
+        {
+          "id": "st_chunfen-02",
+          "text": "春分雨脚落声微，柳岸斜风带客归。",
+          "author": "徐铉",
+          "source": "春分",
+          "default": false
+        }
+      ]
+    },
+    "st_qingming": {
+      "name": "清明",
+      "category": "solar_term",
+      "tone": "solemn",
+      "poems": [
+        {
+          "id": "st_qingming-01",
+          "text": "清明时节雨纷纷，路上行人欲断魂。",
+          "author": "杜牧",
+          "source": "清明",
+          "default": true
+        },
+        {
+          "id": "st_qingming-02",
+          "text": "梨花风起正清明，游子寻春半出城。",
+          "author": "吴惟信",
+          "source": "苏堤清明即事",
+          "default": false
+        }
+      ],
+      "figure": {
+        "name": "杜牧",
+        "era": "唐"
+      }
+    },
+    "st_guyu": {
+      "name": "谷雨",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_guyu-01",
+          "text": "谷雨春光晓，山川黛色青。",
+          "author": "朱服",
+          "source": "谷雨",
+          "default": true
+        },
+        {
+          "id": "st_guyu-02",
+          "text": "谷雨如丝复似尘，煮瓶浮蜡正尝新。",
+          "author": "范成大",
+          "source": "晚春二首",
+          "default": false
+        }
+      ]
+    },
+    "st_lixia": {
+      "name": "立夏",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_lixia-01",
+          "text": "立夏将离春去也，几枝蕙草正芳舒。",
+          "author": "张雨",
+          "source": "立夏",
+          "default": true
+        },
+        {
+          "id": "st_lixia-02",
+          "text": "绿树阴浓夏日长，楼台倒影入池塘。",
+          "author": "高骈",
+          "source": "山亭夏日",
+          "default": false
+        }
+      ]
+    },
+    "st_xiaoman": {
+      "name": "小满",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_xiaoman-01",
+          "text": "小满温和夏日晚，安魂曲里听凉天。",
+          "author": "节气谚语",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "st_xiaoman-02",
+          "text": "物至于此，小得盈满。",
+          "author": "月令七十二候",
+          "source": "小满",
+          "default": false
+        }
+      ]
+    },
+    "st_mangzhong": {
+      "name": "芒种",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_mangzhong-01",
+          "text": "时雨及芒种，四野皆插秧。",
+          "author": "陆游",
+          "source": "时雨",
+          "default": true
+        },
+        {
+          "id": "st_mangzhong-02",
+          "text": "芒种忙忙割，农家乐启镰。",
+          "author": "节气谚语",
+          "source": "化用",
+          "default": false
+        }
+      ]
+    },
+    "st_xiazhi": {
+      "name": "夏至",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_xiazhi-01",
+          "text": "昼晷已云极，宵漏自此长。",
+          "author": "韦应物",
+          "source": "夏至避暑北池",
+          "default": true
+        },
+        {
+          "id": "st_xiazhi-02",
+          "text": "夏至一阴生，稍喜炎威减。",
+          "author": "范成大",
+          "source": "夏至",
+          "default": false
+        }
+      ]
+    },
+    "st_xiaoshu": {
+      "name": "小暑",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_xiaoshu-01",
+          "text": "倏忽温风至，因循小暑来。",
+          "author": "元稹",
+          "source": "小暑六月节",
+          "default": true
+        },
+        {
+          "id": "st_xiaoshu-02",
+          "text": "小暑金将伏，微凉麦正秋。",
+          "author": "元稹",
+          "source": "小暑",
+          "default": false
+        }
+      ]
+    },
+    "st_dashu": {
+      "name": "大暑",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_dashu-01",
+          "text": "赤日几时过，清风无觅处。",
+          "author": "杜甫",
+          "source": "大暑",
+          "default": true
+        },
+        {
+          "id": "st_dashu-02",
+          "text": "大暑三秋近，林钟九夏移。",
+          "author": "刘长卿",
+          "source": "大暑",
+          "default": false
+        }
+      ]
+    },
+    "st_liqiu": {
+      "name": "立秋",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_liqiu-01",
+          "text": "睡起秋声无觅处，满阶梧桐月明中。",
+          "author": "刘翰",
+          "source": "立秋日",
+          "default": true
+        },
+        {
+          "id": "st_liqiu-02",
+          "text": "云天收夏色，木叶动秋声。",
+          "author": "刘彻",
+          "source": "立秋",
+          "default": false
+        }
+      ]
+    },
+    "st_chushu": {
+      "name": "处暑",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_chushu-01",
+          "text": "处暑无三日，新凉直万金。",
+          "author": "陆龟蒙",
+          "source": "处暑",
+          "default": true
+        },
+        {
+          "id": "st_chushu-02",
+          "text": "处暑天还暑，好似秋老虎。",
+          "author": "节气谚语",
+          "source": "化用",
+          "default": false
+        }
+      ]
+    },
+    "st_bailu": {
+      "name": "白露",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_bailu-01",
+          "text": "蒹葭苍苍，白露为霜。",
+          "author": "诗经",
+          "source": "蒹葭",
+          "default": true
+        },
+        {
+          "id": "st_bailu-02",
+          "text": "白露暧秋色，月明清漏中。",
+          "author": "杜甫",
+          "source": "白露",
+          "default": false
+        }
+      ]
+    },
+    "st_qiufen": {
+      "name": "秋分",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_qiufen-01",
+          "text": "秋分客尚在，竹露夕成圆。",
+          "author": "杜甫",
+          "source": "晚晴",
+          "default": true
+        },
+        {
+          "id": "st_qiufen-02",
+          "text": "金气秋分，风清露冷秋期半。",
+          "author": "谢逸",
+          "source": "点绛唇",
+          "default": false
+        }
+      ]
+    },
+    "st_hanlu": {
+      "name": "寒露",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_hanlu-01",
+          "text": "寒露洁秋空，遥山纷在瞩。",
+          "author": "谢朓",
+          "source": "暂使下都",
+          "default": true
+        },
+        {
+          "id": "st_hanlu-02",
+          "text": "袅袅凉风动，凄凄寒露零。",
+          "author": "白居易",
+          "source": "暮秋吟",
+          "default": false
+        }
+      ]
+    },
+    "st_shuangjiang": {
+      "name": "霜降",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_shuangjiang-01",
+          "text": "霜降碧天静，秋事促西风。",
+          "author": "范仲淹",
+          "source": "南歌子",
+          "default": true
+        },
+        {
+          "id": "st_shuangjiang-02",
+          "text": "霜降鸿声切，秋深客思迷。",
+          "author": "元稹",
+          "source": "霜降",
+          "default": false
+        }
+      ]
+    },
+    "st_lidong": {
+      "name": "立冬",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_lidong-01",
+          "text": "立冬犹树衣，宵残月渐明。",
+          "author": "王铚",
+          "source": "立冬",
+          "default": true
+        },
+        {
+          "id": "st_lidong-02",
+          "text": "冻笔新诗懒写，寒炉美酒时温。",
+          "author": "苏轼",
+          "source": "立冬",
+          "default": false
+        }
+      ]
+    },
+    "st_xiaoxue": {
+      "name": "小雪",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_xiaoxue-01",
+          "text": "花雪随风不厌看，更多还肯失林峦。",
+          "author": "杨时",
+          "source": "小雪",
+          "default": true
+        },
+        {
+          "id": "st_xiaoxue-02",
+          "text": "小雪雪满天，来年必丰年。",
+          "author": "节气谚语",
+          "source": "化用",
+          "default": false
+        }
+      ]
+    },
+    "st_daxue": {
+      "name": "大雪",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_daxue-01",
+          "text": "燕山雪花大如席，片片吹落轩辕台。",
+          "author": "李白",
+          "source": "北风行",
+          "default": true
+        },
+        {
+          "id": "st_daxue-02",
+          "text": "晚来天欲雪，能饮一杯无？",
+          "author": "白居易",
+          "source": "问刘十九",
+          "default": false
+        }
+      ],
+      "figure": {
+        "name": "李白",
+        "era": "唐"
+      }
+    },
+    "st_dongzhi": {
+      "name": "冬至",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_dongzhi-01",
+          "text": "冬至阳生春又来，天时人事日相催。",
+          "author": "杜甫",
+          "source": "小至",
+          "default": true
+        },
+        {
+          "id": "st_dongzhi-02",
+          "text": "天时人事日相催，冬至阳生春又来。",
+          "author": "杜甫",
+          "source": "小至",
+          "default": false
+        }
+      ]
+    },
+    "st_xiaohan": {
+      "name": "小寒",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_xiaohan-01",
+          "text": "小寒连大吕，欢鹊垒新巢。",
+          "author": "元稹",
+          "source": "小寒节",
+          "default": true
+        },
+        {
+          "id": "st_xiaohan-02",
+          "text": "小寒时节，天寒地冻，注意保暖。",
+          "author": "节气谚语",
+          "source": "化用",
+          "default": false
+        }
+      ]
+    },
+    "st_dahan": {
+      "name": "大寒",
+      "category": "solar_term",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "st_dahan-01",
+          "text": "大寒已过腊来时，万物那知春意熙。",
+          "author": "张耒",
+          "source": "大寒",
+          "default": true
+        },
+        {
+          "id": "st_dahan-02",
+          "text": "大寒雪未消，闭户不能出。",
+          "author": "邵雍",
+          "source": "大寒",
+          "default": false
+        }
+      ]
+    }
+  },
+  "festivals": {
+    "tf_chuxi": {
+      "name": "除夕",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_chuxi-01",
+          "text": "一年将尽夜，万里未归人。",
+          "author": "戴叔伦",
+          "source": "除夜宿石头驿",
+          "default": true
+        },
+        {
+          "id": "tf_chuxi-02",
+          "text": "爆竹声中一岁除，春风送暖入屠苏。",
+          "author": "王安石",
+          "source": "元日",
+          "default": false
+        }
+      ]
+    },
+    "tf_chunjie": {
+      "name": "春节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_chunjie-01",
+          "text": "爆竹声中一岁除，春风送暖入屠苏。",
+          "author": "王安石",
+          "source": "元日",
+          "default": true,
+          "byFigure": true
+        },
+        {
+          "id": "tf_chunjie-02",
+          "text": "千门万户曈曈日，总把新桃换旧符。",
+          "author": "王安石",
+          "source": "元日",
+          "default": false
+        }
+      ],
+      "lunar": "正月初一",
+      "figure": {
+        "name": "王安石",
+        "era": "宋"
+      }
+    },
+    "tf_yuanxiao": {
+      "name": "元宵节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_yuanxiao-01",
+          "text": "众里寻他千百度，蓦然回首，那人却在灯火阑珊处。",
+          "author": "辛弃疾",
+          "source": "青玉案",
+          "default": true
+        },
+        {
+          "id": "tf_yuanxiao-02",
+          "text": "月上柳梢头，人约黄昏后。",
+          "author": "欧阳修",
+          "source": "生查子",
+          "default": false
+        }
+      ],
+      "lunar": "正月十五",
+      "figure": {
+        "name": "辛弃疾",
+        "era": "宋"
+      }
+    },
+    "tf_longtaitou": {
+      "name": "龙抬头",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_longtaitou-01",
+          "text": "二月二，龙抬头，天下皆春乐悠悠。",
+          "author": "民谣",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "tf_longtaitou-02",
+          "text": "龙抬头，抬龙头，一年都有好兆头。",
+          "author": "民谣",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "lunar": "二月初二"
+    },
+    "tf_shangsi": {
+      "name": "上巳节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_shangsi-01",
+          "text": "曲水流觞千古事，兰亭旧墨尚留香。",
+          "author": "王羲之",
+          "source": "化用兰亭",
+          "default": true
+        },
+        {
+          "id": "tf_shangsi-02",
+          "text": "暮春之初，会于会稽山阴之兰亭。",
+          "author": "王羲之",
+          "source": "兰亭集序",
+          "default": false
+        }
+      ],
+      "lunar": "三月初三",
+      "figure": {
+        "name": "王羲之",
+        "era": "东晋"
+      }
+    },
+    "tf_hanshi": {
+      "name": "寒食节",
+      "category": "traditional",
+      "tone": "solemn",
+      "poems": [
+        {
+          "id": "tf_hanshi-01",
+          "text": "春城无处不飞花，寒食东风御柳斜。",
+          "author": "韩翃",
+          "source": "寒食",
+          "default": true
+        },
+        {
+          "id": "tf_hanshi-02",
+          "text": "寒食江村路，春深野渡舟。",
+          "author": "杜甫",
+          "source": "寒食",
+          "default": false
+        }
+      ],
+      "lunar": "清明前"
+    },
+    "tf_qingming": {
+      "name": "清明节",
+      "category": "traditional",
+      "tone": "solemn",
+      "poems": [
+        {
+          "id": "tf_qingming-01",
+          "text": "清明时节雨纷纷，路上行人欲断魂。",
+          "author": "杜牧",
+          "source": "清明",
+          "default": true
+        },
+        {
+          "id": "tf_qingming-02",
+          "text": "梨花风起正清明，游子寻春半出城。",
+          "author": "吴惟信",
+          "source": "苏堤清明即事",
+          "default": false
+        }
+      ],
+      "figure": {
+        "name": "杜牧",
+        "era": "唐"
+      }
+    },
+    "tf_duanwu": {
+      "name": "端午节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_duanwu-01",
+          "text": "路漫漫其修远兮，吾将上下而求索。",
+          "author": "屈原",
+          "source": "离骚",
+          "default": true,
+          "byFigure": true
+        },
+        {
+          "id": "tf_duanwu-02",
+          "text": "节分端午自谁言，万古传闻为屈原。",
+          "author": "文天祥",
+          "source": "端午",
+          "default": false
+        }
+      ],
+      "lunar": "五月初五",
+      "aliases": [
+        "端午",
+        "端阳"
+      ],
+      "figure": {
+        "name": "屈原",
+        "era": "战国"
+      }
+    },
+    "tf_qixi": {
+      "name": "七夕节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_qixi-01",
+          "text": "金风玉露一相逢，便胜却人间无数。",
+          "author": "秦观",
+          "source": "鹊桥仙",
+          "default": true
+        },
+        {
+          "id": "tf_qixi-02",
+          "text": "两情若是久长时，又岂在朝朝暮暮。",
+          "author": "秦观",
+          "source": "鹊桥仙",
+          "default": false
+        }
+      ],
+      "lunar": "七月初七",
+      "figure": {
+        "name": "秦观",
+        "era": "宋"
+      }
+    },
+    "tf_zhongyuan": {
+      "name": "中元节",
+      "category": "traditional",
+      "tone": "solemn",
+      "poems": [
+        {
+          "id": "tf_zhongyuan-01",
+          "text": "中元作雨七月半，追思祖德忆先贤。",
+          "author": "民俗",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "tf_zhongyuan-02",
+          "text": "中元节至，慎终追远。",
+          "author": "民俗",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "lunar": "七月十五"
+    },
+    "tf_zhongqiu": {
+      "name": "中秋节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_zhongqiu-01",
+          "text": "但愿人长久，千里共婵娟。",
+          "author": "苏轼",
+          "source": "水调歌头",
+          "default": true
+        },
+        {
+          "id": "tf_zhongqiu-02",
+          "text": "海上生明月，天涯共此时。",
+          "author": "张九龄",
+          "source": "望月怀远",
+          "default": false
+        }
+      ],
+      "lunar": "八月十五",
+      "figure": {
+        "name": "苏轼",
+        "era": "宋"
+      }
+    },
+    "tf_chongyang": {
+      "name": "重阳节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_chongyang-01",
+          "text": "遥知兄弟登高处，遍插茱萸少一人。",
+          "author": "王维",
+          "source": "九月九日忆山东兄弟",
+          "default": true
+        },
+        {
+          "id": "tf_chongyang-02",
+          "text": "九日黄花酒，登高会昔闻。",
+          "author": "岑参",
+          "source": "九日",
+          "default": false
+        }
+      ],
+      "lunar": "九月初九",
+      "figure": {
+        "name": "王维",
+        "era": "唐"
+      }
+    },
+    "tf_hanyi": {
+      "name": "寒衣节",
+      "category": "traditional",
+      "tone": "solemn",
+      "poems": [
+        {
+          "id": "tf_hanyi-01",
+          "text": "孟冬寒气至，北风何惨栗。",
+          "author": "古诗十九首",
+          "source": "孟冬",
+          "default": true
+        },
+        {
+          "id": "tf_hanyi-02",
+          "text": "十月朝，送寒衣，慎终追远。",
+          "author": "民俗",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "lunar": "十月初一"
+    },
+    "tf_xiayuan": {
+      "name": "下元节",
+      "category": "traditional",
+      "tone": "solemn",
+      "poems": [
+        {
+          "id": "tf_xiayuan-01",
+          "text": "下元水官解厄日，一元复始愿平安。",
+          "author": "民俗",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "tf_xiayuan-02",
+          "text": "下元节至，祈福消灾。",
+          "author": "民俗",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "lunar": "十月十五"
+    },
+    "tf_laba": {
+      "name": "腊八节",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_laba-01",
+          "text": "腊月八日梁王舍，一粥一饭思圣贤。",
+          "author": "民俗",
+          "source": "化用腊八",
+          "default": true
+        },
+        {
+          "id": "tf_laba-02",
+          "text": "腊八家家粥，相传自古今。",
+          "author": "民俗",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "lunar": "腊月初八"
+    },
+    "tf_xiaonian": {
+      "name": "小年",
+      "category": "traditional",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "tf_xiaonian-01",
+          "text": "小年辞灶腊将残，扫舍掸尘迎新年。",
+          "author": "民俗",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "tf_xiaonian-02",
+          "text": "二十三，糖瓜粘，灶王爷上天言好事。",
+          "author": "民谣",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "lunar": "腊月廿三"
+    },
+    "md_yuandan": {
+      "name": "元旦",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_yuandan-01",
+          "text": "愿得长如此，年年物候新。",
+          "author": "孟浩然",
+          "source": "岁除夜",
+          "default": true
+        },
+        {
+          "id": "md_yuandan-02",
+          "text": "一元复始，万象更新。",
+          "author": "民俗",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "01-01"
+    },
+    "md_women": {
+      "name": "妇女节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_women-01",
+          "text": "巾帼不让须眉志，春风十里展芳菲。",
+          "author": "现代",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "md_women-02",
+          "text": "妇女能顶半边天。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "03-08"
+    },
+    "md_arbor": {
+      "name": "植树节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_arbor-01",
+          "text": "十年树木，百年树人。",
+          "author": "谚语",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "md_arbor-02",
+          "text": "植树造林，绿化祖国。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "03-12"
+    },
+    "md_qingnian": {
+      "name": "青年节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_qingnian-01",
+          "text": "青年志在四化路，热血青春正当时。",
+          "author": "现代",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "md_qingnian-02",
+          "text": "五四精神传薪火，青春奋斗正当时。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "05-04"
+    },
+    "md_labor": {
+      "name": "劳动节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_labor-01",
+          "text": "谁知盘中餐，粒粒皆辛苦。",
+          "author": "李绅",
+          "source": "悯农",
+          "default": true
+        },
+        {
+          "id": "md_labor-02",
+          "text": "劳动最光荣。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "05-01"
+    },
+    "md_youth": {
+      "name": "儿童节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_youth-01",
+          "text": "儿童散学归来早，忙趁东风放纸鸢。",
+          "author": "高鼎",
+          "source": "村居",
+          "default": true
+        },
+        {
+          "id": "md_youth-02",
+          "text": "小荷才露尖尖角，早有蜻蜓立上头。",
+          "author": "杨万里",
+          "source": "小池",
+          "default": false
+        }
+      ],
+      "solar": "06-01"
+    },
+    "md_party": {
+      "name": "建党节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_party-01",
+          "text": "红船精神传百年，初心使命永向前。",
+          "author": "现代",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "md_party-02",
+          "text": "没有共产党，就没有新中国。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "07-01"
+    },
+    "md_army": {
+      "name": "建军节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_army-01",
+          "text": "黄沙百战穿金甲，不破楼兰终不还。",
+          "author": "王昌龄",
+          "source": "从军行",
+          "default": true
+        },
+        {
+          "id": "md_army-02",
+          "text": "醉卧沙场君莫笑，古来征战几人回。",
+          "author": "王翰",
+          "source": "凉州词",
+          "default": false
+        }
+      ],
+      "solar": "08-01"
+    },
+    "md_teacher": {
+      "name": "教师节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_teacher-01",
+          "text": "春蚕到死丝方尽，蜡炬成灰泪始干。",
+          "author": "李商隐",
+          "source": "无题",
+          "default": true
+        },
+        {
+          "id": "md_teacher-02",
+          "text": "随风潜入夜，润物细无声。",
+          "author": "杜甫",
+          "source": "春夜喜雨",
+          "default": false
+        }
+      ],
+      "solar": "09-10"
+    },
+    "md_national": {
+      "name": "国庆节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_national-01",
+          "text": "江山如此多娇，引无数英雄竞折腰。",
+          "author": "毛泽东",
+          "source": "沁园春·雪",
+          "default": true
+        },
+        {
+          "id": "md_national-02",
+          "text": "五星红旗迎风飘扬，胜利歌声多么响亮。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "solar": "10-01"
+    },
+    "md_mothers": {
+      "name": "母亲节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_mothers-01",
+          "text": "谁言寸草心，报得三春晖。",
+          "author": "孟郊",
+          "source": "游子吟",
+          "default": true
+        },
+        {
+          "id": "md_mothers-02",
+          "text": "慈母手中线，游子身上衣。",
+          "author": "孟郊",
+          "source": "游子吟",
+          "default": false
+        }
+      ]
+    },
+    "md_fathers": {
+      "name": "父亲节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_fathers-01",
+          "text": "父爱如山深似海，无声陪伴亦长情。",
+          "author": "现代",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "md_fathers-02",
+          "text": "养儿方知父母恩。",
+          "author": "谚语",
+          "source": "化用",
+          "default": false
+        }
+      ]
+    },
+    "md_children": {
+      "name": "儿童节",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_children-01",
+          "text": "儿童散学归来早，忙趁东风放纸鸢。",
+          "author": "高鼎",
+          "source": "村居",
+          "default": true
+        },
+        {
+          "id": "md_children-02",
+          "text": "小荷才露尖尖角，早有蜻蜓立上头。",
+          "author": "杨万里",
+          "source": "小池",
+          "default": false
+        }
+      ],
+      "solar": "06-01"
+    },
+    "md_chongyang_legal": {
+      "name": "重阳敬老",
+      "category": "modern",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "md_chongyang_legal-01",
+          "text": "遥知兄弟登高处，遍插茱萸少一人。",
+          "author": "王维",
+          "source": "九月九日忆山东兄弟",
+          "default": true
+        },
+        {
+          "id": "md_chongyang_legal-02",
+          "text": "九九重阳，敬老爱老。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "refFestivalId": "tf_chongyang"
+    }
+  },
+  "personal": {
+    "bd_parent": {
+      "name": "父母生日",
+      "category": "personal_birthday",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "bd_parent-01",
+          "text": "谁言寸草心，报得三春晖。",
+          "author": "孟郊",
+          "source": "游子吟",
+          "default": true
+        },
+        {
+          "id": "bd_parent-02",
+          "text": "慈母手中线，游子身上衣。",
+          "author": "孟郊",
+          "source": "游子吟",
+          "default": false
+        }
+      ],
+      "relation": "parent"
+    },
+    "bd_elder": {
+      "name": "长辈生日",
+      "category": "personal_birthday",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "bd_elder-01",
+          "text": "鹤发垂肩尺许长，岁岁年年寿且康。",
+          "author": "现代",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "bd_elder-02",
+          "text": "福如东海长流水，寿比南山不老松。",
+          "author": "民俗",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "relation": "elder"
+    },
+    "bd_spouse": {
+      "name": "配偶生日",
+      "category": "personal_birthday",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "bd_spouse-01",
+          "text": "愿我如星君如月，夜夜流光相皎洁。",
+          "author": "范成大",
+          "source": "车遥遥",
+          "default": true
+        },
+        {
+          "id": "bd_spouse-02",
+          "text": "结发为夫妻，恩爱两不疑。",
+          "author": "苏武",
+          "source": "留别妻",
+          "default": false
+        }
+      ],
+      "relation": "spouse"
+    },
+    "bd_peer": {
+      "name": "同辈生日",
+      "category": "personal_birthday",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "bd_peer-01",
+          "text": "海内存知己，天涯若比邻。",
+          "author": "王勃",
+          "source": "送杜少府之任蜀州",
+          "default": true
+        },
+        {
+          "id": "bd_peer-02",
+          "text": "桃李不言，下自成蹊。",
+          "author": "司马迁",
+          "source": "史记",
+          "default": false
+        }
+      ],
+      "relation": "peer"
+    },
+    "bd_child": {
+      "name": "晚辈生日",
+      "category": "personal_birthday",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "bd_child-01",
+          "text": "少年易学老难成，一寸光阴不可轻。",
+          "author": "朱熹",
+          "source": "劝学",
+          "default": true
+        },
+        {
+          "id": "bd_child-02",
+          "text": "少小离家老大回，乡音无改鬓毛衰。",
+          "author": "贺知章",
+          "source": "回乡偶书",
+          "default": false
+        }
+      ],
+      "relation": "child"
+    },
+    "bd_self": {
+      "name": "自己生日",
+      "category": "personal_birthday",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "bd_self-01",
+          "text": "年年有今日，岁岁有今朝。",
+          "author": "民俗",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "bd_self-02",
+          "text": "愿所求皆如愿，所行化坦途。",
+          "author": "现代",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "relation": "self"
+    },
+    "an_wedding": {
+      "name": "结婚纪念日",
+      "category": "personal_anniversary",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "an_wedding-01",
+          "text": "愿得一心人，白头不相离。",
+          "author": "卓文君",
+          "source": "白头吟",
+          "default": true
+        },
+        {
+          "id": "an_wedding-02",
+          "text": "执子之手，与子偕老。",
+          "author": "诗经",
+          "source": "邶风",
+          "default": false
+        }
+      ],
+      "subtype": "wedding"
+    },
+    "an_love": {
+      "name": "恋爱纪念日",
+      "category": "personal_anniversary",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "an_love-01",
+          "text": "两情若是久长时，又岂在朝朝暮暮。",
+          "author": "秦观",
+          "source": "鹊桥仙",
+          "default": true
+        },
+        {
+          "id": "an_love-02",
+          "text": "在天愿作比翼鸟，在地愿为连理枝。",
+          "author": "白居易",
+          "source": "长恨歌",
+          "default": false
+        }
+      ],
+      "subtype": "love"
+    },
+    "an_family": {
+      "name": "家庭纪念日",
+      "category": "personal_anniversary",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "an_family-01",
+          "text": "此心安处是吾乡。",
+          "author": "苏轼",
+          "source": "定风波",
+          "default": true
+        },
+        {
+          "id": "an_family-02",
+          "text": "家和万事兴。",
+          "author": "谚语",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "subtype": "family"
+    },
+    "an_work": {
+      "name": "工作纪念日",
+      "category": "personal_anniversary",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "an_work-01",
+          "text": "长风破浪会有时，直挂云帆济沧海。",
+          "author": "李白",
+          "source": "行路难",
+          "default": true
+        },
+        {
+          "id": "an_work-02",
+          "text": "宝剑锋从磨砺出，梅花香自苦寒来。",
+          "author": "谚语",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "subtype": "work"
+    },
+    "an_custom": {
+      "name": "自定义纪念日",
+      "category": "personal_anniversary",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "an_custom-01",
+          "text": "相逢已是上上签，何须相思煮余年。",
+          "author": "现代",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "an_custom-02",
+          "text": "岁月不居，时节如流。",
+          "author": "孔融",
+          "source": "论盛孝章书",
+          "default": false
+        }
+      ],
+      "subtype": "custom"
+    },
+    "cd_time": {
+      "name": "通用倒数",
+      "category": "personal_countdown",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "cd_time-01",
+          "text": "一寸光阴一寸金，寸金难买寸光阴。",
+          "author": "谚语",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "cd_time-02",
+          "text": "少壮不努力，老大徒伤悲。",
+          "author": "汉乐府",
+          "source": "长歌行",
+          "default": false
+        }
+      ],
+      "theme": "time"
+    },
+    "cd_travel": {
+      "name": "出行倒数",
+      "category": "personal_countdown",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "cd_travel-01",
+          "text": "春风得意马蹄疾，一日看尽长安花。",
+          "author": "孟郊",
+          "source": "登科后",
+          "default": true
+        },
+        {
+          "id": "cd_travel-02",
+          "text": "此心安处是吾乡。",
+          "author": "苏轼",
+          "source": "定风波",
+          "default": false
+        }
+      ],
+      "theme": "travel"
+    },
+    "cd_exam": {
+      "name": "考试倒数",
+      "category": "personal_countdown",
+      "tone": "festive",
+      "poems": [
+        {
+          "id": "cd_exam-01",
+          "text": "宝剑锋从磨砺出，梅花香自苦寒来。",
+          "author": "谚语",
+          "source": "化用",
+          "default": true
+        },
+        {
+          "id": "cd_exam-02",
+          "text": "书山有路勤为径，学海无涯苦作舟。",
+          "author": "韩愈",
+          "source": "化用",
+          "default": false
+        }
+      ],
+      "theme": "exam"
+    }
+  }
+}

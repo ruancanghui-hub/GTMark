@@ -1,0 +1,1156 @@
+{
+  "version": 1,
+  "meta": {
+    "description": "吉辰万年历 · 离线祝福库 v1 全量",
+    "offline": true
+  },
+  "templates": {
+    "bls_generic": {
+      "id": "bls_generic",
+      "scene": "generic",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，{节日名}快乐！",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，祝您{节日名}快乐，一切顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      }
+    },
+    "bls_bd_parent": {
+      "id": "bls_bd_parent",
+      "scene": "birthday",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，生日快乐🎂 健康平安！",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，祝您生日快乐，身体健康，万事如意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "relation": "parent",
+      "refPoemId": "bd_parent"
+    },
+    "bls_bd_elder": {
+      "id": "bls_bd_elder",
+      "scene": "birthday",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，福寿安康 🌸",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，祝您福如东海，寿比南山，身体康健。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "relation": "elder",
+      "refPoemId": "bd_elder"
+    },
+    "bls_bd_spouse": {
+      "id": "bls_bd_spouse",
+      "scene": "birthday",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，生日快乐，爱你 ❤️",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，生日快乐，感谢有你相伴岁岁年年。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "relation": "spouse",
+      "refPoemId": "bd_spouse"
+    },
+    "bls_bd_peer": {
+      "id": "bls_bd_peer",
+      "scene": "birthday",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，生日快乐，天天开心！",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，祝生日快乐，前程似锦，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "relation": "peer",
+      "refPoemId": "bd_peer"
+    },
+    "bls_bd_child": {
+      "id": "bls_bd_child",
+      "scene": "birthday",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，生日快乐，快快长大 🎈",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，生日快乐，愿你平安快乐，天天向上。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "relation": "child",
+      "refPoemId": "bd_child"
+    },
+    "bls_bd_self": {
+      "id": "bls_bd_self",
+      "scene": "birthday",
+      "tone": "festive",
+      "wechat": {
+        "text": "祝自己生日快乐，新的一年更好！",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "祝自己生日快乐，愿所求皆如愿，所行化坦途。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "relation": "self",
+      "refPoemId": "bd_self"
+    },
+    "bls_an_wedding": {
+      "id": "bls_an_wedding",
+      "scene": "anniversary",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，结婚纪念日快乐 ❤️",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，结婚纪念日快乐，愿白头偕老，永浴爱河。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "subtype": "wedding",
+      "refPoemId": "an_wedding"
+    },
+    "bls_an_love": {
+      "id": "bls_an_love",
+      "scene": "anniversary",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，相爱快乐，感谢遇见 💕",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，相爱纪念日快乐，愿此情长久，岁岁相守。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "subtype": "love",
+      "refPoemId": "an_love"
+    },
+    "bls_an_family": {
+      "id": "bls_an_family",
+      "scene": "anniversary",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，纪念日快乐，家安人健 🏠",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，纪念日快乐，愿家和万事兴，平安喜乐。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "subtype": "family",
+      "refPoemId": "an_family"
+    },
+    "bls_an_work": {
+      "id": "bls_an_work",
+      "scene": "anniversary",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，周年快乐，事业长虹",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，入职/开业周年快乐，愿事业蒸蒸日上。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "subtype": "work",
+      "refPoemId": "an_work"
+    },
+    "bls_an_custom": {
+      "id": "bls_an_custom",
+      "scene": "anniversary",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，{类型名}快乐！",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，祝{类型名}快乐，一切顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "subtype": "custom",
+      "refPoemId": "an_custom"
+    },
+    "bls_cd_time": {
+      "id": "bls_cd_time",
+      "scene": "countdown",
+      "tone": "festive",
+      "wechat": {
+        "text": "还有{倒数天}天，加油！",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，距离目标还有{倒数天}天，愿你顺遂平安。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "theme": "time",
+      "refPoemId": "cd_time"
+    },
+    "bls_cd_travel": {
+      "id": "bls_cd_travel",
+      "scene": "countdown",
+      "tone": "festive",
+      "wechat": {
+        "text": "还有{倒数天}天出发，一路平安 ✈️",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，距离出发还有{倒数天}天，祝一路平安。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "theme": "travel",
+      "refPoemId": "cd_travel"
+    },
+    "bls_cd_exam": {
+      "id": "bls_cd_exam",
+      "scene": "countdown",
+      "tone": "festive",
+      "wechat": {
+        "text": "还有{倒数天}天，沉着应考 💪",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，距离大考还有{倒数天}天，祝你发挥出色。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "theme": "exam",
+      "refPoemId": "cd_exam"
+    },
+    "bls_tf_chuxi": {
+      "id": "bls_tf_chuxi",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，除夕快乐，阖家团圆 🧧",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，除夕快乐，阖家团圆，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_chuxi",
+      "refPoemId": "tf_chuxi"
+    },
+    "bls_tf_chunjie": {
+      "id": "bls_tf_chunjie",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，新春快乐 🧧",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，恭祝新春快乐，阖家幸福。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_chunjie",
+      "refPoemId": "tf_chunjie"
+    },
+    "bls_tf_yuanxiao": {
+      "id": "bls_tf_yuanxiao",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，元宵快乐，花好月圆",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，元宵佳节快乐，花好月圆人团圆。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_yuanxiao",
+      "refPoemId": "tf_yuanxiao"
+    },
+    "bls_tf_longtaitou": {
+      "id": "bls_tf_longtaitou",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，龙抬头大吉 🐲",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，龙抬头好彩头，一年都有精神头。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_longtaitou",
+      "refPoemId": "tf_longtaitou"
+    },
+    "bls_tf_qingming": {
+      "id": "bls_tf_qingming",
+      "scene": "festival",
+      "tone": "solemn",
+      "wechat": {
+        "text": "{称呼}，清明安康，慎终追远。",
+        "maxChars": 50,
+        "emojiAllowed": false
+      },
+      "sms": {
+        "text": "{称呼}，清明时节，慎终追远，平安顺遂。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_qingming",
+      "refPoemId": "tf_qingming"
+    },
+    "bls_tf_duanwu": {
+      "id": "bls_tf_duanwu",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，端午安康 🐲",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，端午安康，愿平安顺遂。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_duanwu",
+      "refPoemId": "tf_duanwu"
+    },
+    "bls_tf_qixi": {
+      "id": "bls_tf_qixi",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，七夕快乐 💕",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，七夕快乐，愿有情人终成眷属。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_qixi",
+      "refPoemId": "tf_qixi"
+    },
+    "bls_tf_zhongyuan": {
+      "id": "bls_tf_zhongyuan",
+      "scene": "festival",
+      "tone": "solemn",
+      "wechat": {
+        "text": "{称呼}，中元安康，慎终追远。",
+        "maxChars": 50,
+        "emojiAllowed": false
+      },
+      "sms": {
+        "text": "{称呼}，中元节平安，缅怀先人。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_zhongyuan",
+      "refPoemId": "tf_zhongyuan"
+    },
+    "bls_tf_zhongqiu": {
+      "id": "bls_tf_zhongqiu",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，中秋团圆 🌕",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，中秋快乐，月圆人圆。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_zhongqiu",
+      "refPoemId": "tf_zhongqiu"
+    },
+    "bls_tf_chongyang": {
+      "id": "bls_tf_chongyang",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，重阳安康",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，重阳敬老，祝您安康。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_chongyang",
+      "refPoemId": "tf_chongyang"
+    },
+    "bls_tf_hanyi": {
+      "id": "bls_tf_hanyi",
+      "scene": "festival",
+      "tone": "solemn",
+      "wechat": {
+        "text": "{称呼}，寒衣节安。",
+        "maxChars": 50,
+        "emojiAllowed": false
+      },
+      "sms": {
+        "text": "{称呼}，寒衣节平安，慎终追远。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_hanyi",
+      "refPoemId": "tf_hanyi"
+    },
+    "bls_tf_laba": {
+      "id": "bls_tf_laba",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，腊八快乐，粥暖人心",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，腊八节快乐，万事粥全。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_laba",
+      "refPoemId": "tf_laba"
+    },
+    "bls_tf_xiaonian": {
+      "id": "bls_tf_xiaonian",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，小年快乐 🏮",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，小年快乐，迎新春。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_xiaonian",
+      "refPoemId": "tf_xiaonian"
+    },
+    "bls_tf_shangsi": {
+      "id": "bls_tf_shangsi",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，上巳节快乐，曲水流觞",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，上巳节快乐，愿您平安顺遂。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_shangsi",
+      "refPoemId": "tf_shangsi"
+    },
+    "bls_tf_hanshi": {
+      "id": "bls_tf_hanshi",
+      "scene": "festival",
+      "tone": "solemn",
+      "wechat": {
+        "text": "{称呼}，寒食节安，慎终追远。",
+        "maxChars": 50,
+        "emojiAllowed": false
+      },
+      "sms": {
+        "text": "{称呼}，寒食节平安，缅怀先人。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_hanshi",
+      "refPoemId": "tf_hanshi"
+    },
+    "bls_tf_xiayuan": {
+      "id": "bls_tf_xiayuan",
+      "scene": "festival",
+      "tone": "solemn",
+      "wechat": {
+        "text": "{称呼}，下元节安。",
+        "maxChars": 50,
+        "emojiAllowed": false
+      },
+      "sms": {
+        "text": "{称呼}，下元节平安，祈福消灾。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "tf_xiayuan",
+      "refPoemId": "tf_xiayuan"
+    },
+    "bls_md_arbor": {
+      "id": "bls_md_arbor",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，植树节快乐 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，植树节快乐，愿绿色常在。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_arbor",
+      "refPoemId": "md_arbor"
+    },
+    "bls_md_qingnian": {
+      "id": "bls_md_qingnian",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，青年节快乐",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，青年节快乐，愿青春不负韶华。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_qingnian",
+      "refPoemId": "md_qingnian"
+    },
+    "bls_md_children": {
+      "id": "bls_md_children",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，六一快乐 🎈",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，六一儿童节快乐，愿你天天开心。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_children",
+      "refPoemId": "md_children"
+    },
+    "bls_md_chongyang_legal": {
+      "id": "bls_md_chongyang_legal",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，重阳敬老，安康",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，重阳敬老，祝您安康。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_chongyang_legal",
+      "refPoemId": "md_chongyang_legal"
+    },
+    "bls_md_yuandan": {
+      "id": "bls_md_yuandan",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，元旦快乐，新年更好 🎉",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，元旦快乐，愿新年万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_yuandan",
+      "refPoemId": "md_yuandan"
+    },
+    "bls_md_labor": {
+      "id": "bls_md_labor",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，劳动节快乐，辛苦了",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，劳动节快乐，愿您工作顺利，身体康健。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_labor",
+      "refPoemId": "md_labor"
+    },
+    "bls_md_national": {
+      "id": "bls_md_national",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，国庆快乐 🇨🇳",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，国庆快乐，愿祖国繁荣，阖家幸福。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_national",
+      "refPoemId": "md_national"
+    },
+    "bls_md_teacher": {
+      "id": "bls_md_teacher",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，教师节快乐，您辛苦了",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，教师节快乐，感谢您的辛勤付出。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_teacher",
+      "refPoemId": "md_teacher"
+    },
+    "bls_md_mothers": {
+      "id": "bls_md_mothers",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，母亲节快乐 ❤️",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，母亲节快乐，愿您健康幸福。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_mothers",
+      "refPoemId": "md_mothers"
+    },
+    "bls_md_fathers": {
+      "id": "bls_md_fathers",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，父亲节快乐",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，父亲节快乐，愿您身体康健。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_fathers",
+      "refPoemId": "md_fathers"
+    },
+    "bls_md_youth": {
+      "id": "bls_md_youth",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，六一快乐 🎈",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，六一儿童节快乐，愿你天天开心。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_youth",
+      "refPoemId": "md_youth"
+    },
+    "bls_md_women": {
+      "id": "bls_md_women",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，女神节快乐",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，妇女节快乐，愿你美丽自信。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_women",
+      "refPoemId": "md_women"
+    },
+    "bls_md_party": {
+      "id": "bls_md_party",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，建党纪念日快乐",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，建党纪念日快乐，愿祖国繁荣昌盛。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_party",
+      "refPoemId": "md_party"
+    },
+    "bls_md_army": {
+      "id": "bls_md_army",
+      "scene": "festival",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，向军人致敬，建军节快乐",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，建军节快乐，向人民子弟兵致敬。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refFestivalId": "md_army",
+      "refPoemId": "md_army"
+    },
+    "bls_st_lichun": {
+      "id": "bls_st_lichun",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，立春快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，立春快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_lichun"
+    },
+    "bls_st_yushui": {
+      "id": "bls_st_yushui",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，雨水快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，雨水快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_yushui"
+    },
+    "bls_st_jingzhe": {
+      "id": "bls_st_jingzhe",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，惊蛰快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，惊蛰快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_jingzhe"
+    },
+    "bls_st_chunfen": {
+      "id": "bls_st_chunfen",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，春分快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，春分快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_chunfen"
+    },
+    "bls_st_qingming": {
+      "id": "bls_st_qingming",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，清明快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，清明快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_qingming"
+    },
+    "bls_st_guyu": {
+      "id": "bls_st_guyu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，谷雨快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，谷雨快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_guyu"
+    },
+    "bls_st_lixia": {
+      "id": "bls_st_lixia",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，立夏快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，立夏快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_lixia"
+    },
+    "bls_st_xiaoman": {
+      "id": "bls_st_xiaoman",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，小满快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，小满快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_xiaoman"
+    },
+    "bls_st_mangzhong": {
+      "id": "bls_st_mangzhong",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，芒种快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，芒种快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_mangzhong"
+    },
+    "bls_st_xiazhi": {
+      "id": "bls_st_xiazhi",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，夏至快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，夏至快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_xiazhi"
+    },
+    "bls_st_xiaoshu": {
+      "id": "bls_st_xiaoshu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，小暑快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，小暑快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_xiaoshu"
+    },
+    "bls_st_dashu": {
+      "id": "bls_st_dashu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，大暑快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，大暑快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_dashu"
+    },
+    "bls_st_liqiu": {
+      "id": "bls_st_liqiu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，立秋快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，立秋快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_liqiu"
+    },
+    "bls_st_chushu": {
+      "id": "bls_st_chushu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，处暑快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，处暑快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_chushu"
+    },
+    "bls_st_bailu": {
+      "id": "bls_st_bailu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，白露快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，白露快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_bailu"
+    },
+    "bls_st_qiufen": {
+      "id": "bls_st_qiufen",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，秋分快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，秋分快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_qiufen"
+    },
+    "bls_st_hanlu": {
+      "id": "bls_st_hanlu",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，寒露快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，寒露快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_hanlu"
+    },
+    "bls_st_shuangjiang": {
+      "id": "bls_st_shuangjiang",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，霜降快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，霜降快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_shuangjiang"
+    },
+    "bls_st_lidong": {
+      "id": "bls_st_lidong",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，立冬快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，立冬快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_lidong"
+    },
+    "bls_st_xiaoxue": {
+      "id": "bls_st_xiaoxue",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，小雪快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，小雪快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_xiaoxue"
+    },
+    "bls_st_daxue": {
+      "id": "bls_st_daxue",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，大雪快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，大雪快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_daxue"
+    },
+    "bls_st_dongzhi": {
+      "id": "bls_st_dongzhi",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，冬至快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，冬至快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_dongzhi"
+    },
+    "bls_st_xiaohan": {
+      "id": "bls_st_xiaohan",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，小寒快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，小寒快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_xiaohan"
+    },
+    "bls_st_dahan": {
+      "id": "bls_st_dahan",
+      "scene": "solar_term",
+      "tone": "festive",
+      "wechat": {
+        "text": "{称呼}，大寒快乐，万象更新 🌱",
+        "maxChars": 50,
+        "emojiAllowed": true
+      },
+      "sms": {
+        "text": "{称呼}，大寒快乐，愿四季安康，万事顺意。",
+        "maxChars": 70,
+        "emojiAllowed": false
+      },
+      "refPoemId": "st_dahan"
+    }
+  }
+}

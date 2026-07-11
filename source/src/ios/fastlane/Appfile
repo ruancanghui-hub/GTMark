@@ -1,0 +1,7 @@
+app_identifier(ENV.fetch("IOS_BUNDLE_ID", "com.nightelf.LuckyDatePro"))
+apple_id(ENV.fetch("FASTLANE_APPLE_ID", "bfqiwbifj@163.com"))
+team_id(ENV.fetch("IOS_TEAM_ID", "JH8478GAY6"))
+
+# 建议在 CI 中使用 App Store Connect API Key，避免交互式登录。
+itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"]) if ENV["APP_STORE_CONNECT_TEAM_ID"]
+itc_team_name(ENV["APP_STORE_CONNECT_TEAM_NAME"]) if ENV["APP_STORE_CONNECT_TEAM_NAME"]
