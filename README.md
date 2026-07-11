@@ -32,7 +32,21 @@ bash start.sh
 
 ## 串联使用
 
-在 Cursor 对话中：
+### 写项目（推荐）
+
+加载 skill **`gtmark-project-pipeline`**，在 Cursor 对话中：
+
+```text
+用 gtmark-project-pipeline 从零写项目：
+
+项目名：MyApp
+目标：【一句话描述】
+要求：【技术栈、功能、测试等】
+```
+
+流水线：Prompt Optimizer → DeerFlow 调研 → 写代码 → Ruflo 沉淀 → Letta 长期记忆。
+
+### 单任务串联
 
 ```text
 用 agent-frameworks 串联五个框架：
