@@ -41,12 +41,10 @@ void main() {
       ),
     );
 
-    expect(find.byIcon(Icons.swap_vert_rounded), findsOneWidget);
+    final handle = find.bySemanticsLabel('Adjust amount');
+    expect(handle, findsOneWidget);
 
-    await tester.drag(
-      find.byIcon(Icons.swap_vert_rounded),
-      const Offset(0, -80),
-    );
+    await tester.drag(handle, const Offset(0, -80));
     await tester.pump();
 
     expect(changed, greaterThan(8));

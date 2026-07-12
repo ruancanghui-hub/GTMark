@@ -91,7 +91,7 @@ class _MeTabState extends State<MeTab> {
                     () => Modular.to.pushNamed('/onboarding/'),
                   ),
                   _materialTile(
-                    Icons.block,
+                    QwAssets.removeAds,
                     'Remove Ads',
                     _showPlaceholder,
                     subtitle: const Text(
@@ -114,7 +114,7 @@ class _MeTabState extends State<MeTab> {
   }
 
   Widget _materialTile(
-    IconData icon,
+    String iconAsset,
     String title,
     VoidCallback onTap, {
     Widget? subtitle,
@@ -126,15 +126,7 @@ class _MeTabState extends State<MeTab> {
         borderRadius: BorderRadius.circular(22),
       ),
       child: ListTile(
-        leading: Container(
-          width: 42,
-          height: 42,
-          decoration: BoxDecoration(
-            color: QwColors.skyMid.withValues(alpha: 0.16),
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: Icon(icon, color: QwColors.primaryDeep),
-        ),
+        leading: QwAssetIcon(asset: iconAsset, label: '$title icon', size: 42),
         title: Text(
           title,
           style: const TextStyle(

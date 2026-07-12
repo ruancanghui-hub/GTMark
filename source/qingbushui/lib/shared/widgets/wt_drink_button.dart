@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/qing_theme.dart';
+import '../assets/qw_assets.dart';
+import 'qw_asset_icon.dart';
 
 enum WtDrinkButtonStyle { white, gradient }
 
@@ -41,12 +43,13 @@ class WtDrinkButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.add,
-                  color: isWhite ? Colors.black : Colors.white,
-                  size: 22,
+                QwAssetIcon(
+                  asset: QwAssets.confirmWaterDrop,
+                  label: 'Confirm drink',
+                  size: 28,
+                  opacity: isWhite ? 0.9 : 1,
                 ),
-                const SizedBox(width: 4),
+                const SizedBox(width: 6),
                 Text(
                   'DRINK',
                   style: TextStyle(

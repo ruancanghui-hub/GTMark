@@ -64,9 +64,9 @@ class DrinkSelectPage extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             QwGlassChip(
-              icon: title == 'Water'
-                  ? Icons.water_drop_rounded
-                  : Icons.local_cafe_rounded,
+              asset: title == 'Water'
+                  ? QwAssets.drinkWaterGlass
+                  : QwAssets.drinkCoffee,
               label: '${items.length} choices',
             ),
           ],
@@ -276,17 +276,20 @@ class _HeroCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          Container(
-            width: 76,
-            height: 76,
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.22),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.water_drop_rounded,
-              color: Colors.white,
-              size: 46,
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0, end: 1),
+            duration: const Duration(milliseconds: 700),
+            curve: Curves.easeOutBack,
+            builder: (context, value, child) {
+              return Transform.translate(
+                offset: Offset(0, 8 * (1 - value)),
+                child: Opacity(opacity: value.clamp(0, 1), child: child),
+              );
+            },
+            child: const QwAssetIcon(
+              asset: QwAssets.drinkSelectHero,
+              label: 'Build your cup crystal illustration',
+              size: 132,
             ),
           ),
         ],

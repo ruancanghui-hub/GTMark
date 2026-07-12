@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
+import 'qw_asset_icon.dart';
+
 class QwGlassChip extends StatelessWidget {
   const QwGlassChip({
     super.key,
-    required this.icon,
+    this.icon,
+    this.asset,
     required this.label,
     this.value,
     this.onTap,
-  });
+  }) : assert(icon != null || asset != null);
 
-  final IconData icon;
+  final IconData? icon;
+  final String? asset;
   final String label;
   final String? value;
   final VoidCallback? onTap;
@@ -34,7 +38,10 @@ class QwGlassChip extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 15, color: Colors.white),
+          if (asset != null)
+            QwAssetIcon(asset: asset!, label: '$label chip icon', size: 18)
+          else
+            Icon(icon, size: 15, color: Colors.white),
           const SizedBox(width: 6),
           Text(
             value == null ? label : '$label $value',

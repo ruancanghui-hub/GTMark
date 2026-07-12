@@ -3,6 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../app/qing_theme.dart';
 import '../../core/hydration/hydration_store.dart';
+import '../../shared/assets/qw_assets.dart';
+import '../../shared/widgets/qw_asset_icon.dart';
+import '../../shared/widgets/qw_screen_shell.dart';
 
 class MuteAtNightPage extends StatefulWidget {
   const MuteAtNightPage({super.key});
@@ -37,55 +40,90 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(gradient: WtColors.nightGradient),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.white,
-          elevation: 0,
-          title: const Text('Mute at night'),
-        ),
-        body: Column(
+    return Scaffold(
+      body: QwScreenShell(
+        padding: EdgeInsets.zero,
+        child: Column(
           children: [
-            const SizedBox(height: 24),
-            const Icon(Icons.notifications_off, color: Colors.white, size: 48),
-            const SizedBox(height: 24),
-            const Text(
-              'When do you usually end a day?',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 32),
-            Expanded(
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _wheel(
-                    value: _hour,
-                    max: 23,
-                    onChanged: (v) => setState(() => _hour = v),
-                  ),
-                  const Text(
-                    ' : ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
+                  Material(
+                    color: Colors.white.withValues(alpha: 0.36),
+                    shape: const CircleBorder(),
+                    child: IconButton(
+                      onPressed: () => Modular.to.pop(),
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                        size: 18,
+                      ),
                     ),
                   ),
-                  _wheel(
-                    value: _minute,
-                    max: 59,
-                    step: 15,
-                    onChanged: (v) => setState(() => _minute = v),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'Mute at night',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            const QwAssetIcon(
+              asset: QwAssets.muteNightHero,
+              label: 'Mute at night illustration',
+              size: 172,
+            ),
+            const SizedBox(height: 8),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 28),
+              child: Text(
+                'When do you usually end a day?',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 24),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.9),
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _wheel(
+                      value: _hour,
+                      max: 23,
+                      onChanged: (v) => setState(() => _hour = v),
+                    ),
+                    const Text(
+                      ' : ',
+                      style: TextStyle(
+                        color: QwColors.primary,
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    _wheel(
+                      value: _minute,
+                      max: 59,
+                      step: 15,
+                      onChanged: (v) => setState(() => _minute = v),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -95,7 +133,7 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
                 height: 52,
                 child: FilledButton(
                   style: FilledButton.styleFrom(
-                    backgroundColor: WtColors.blueMid,
+                    backgroundColor: QwColors.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(26),
                     ),
@@ -138,9 +176,11 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
               child: Text(
                 v.toString().padLeft(2, '0'),
                 style: TextStyle(
-                  color: Colors.white.withValues(alpha: selected ? 1 : 0.35),
+                  color: selected
+                      ? QwColors.primaryDeep
+                      : QwColors.muted.withValues(alpha: 0.5),
                   fontSize: selected ? 32 : 24,
-                  fontWeight: selected ? FontWeight.w700 : FontWeight.w400,
+                  fontWeight: selected ? FontWeight.w900 : FontWeight.w500,
                 ),
               ),
             );

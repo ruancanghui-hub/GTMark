@@ -2,8 +2,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
+import '../../app/qing_theme.dart';
 import '../../core/hydration/hydration_store.dart';
 import '../../core/hydration/volume_format.dart';
+import '../../shared/assets/qw_assets.dart';
+import '../../shared/widgets/qw_asset_icon.dart';
 import '../../shared/widgets/qw_bottom_nav.dart';
 import '../../shared/widgets/qw_screen_shell.dart';
 
@@ -79,55 +82,26 @@ class _HistoryTabState extends State<HistoryTab>
               Tab(text: 'Month'),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Daily Average',
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.8),
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      VolumeFormat.display(avgMl, _store.unit),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Total',
-                      style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.8),
-                        fontSize: 12,
-                      ),
-                    ),
-                    Text(
-                      VolumeFormat.display(totalMl, _store.unit),
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          _HistoryHero(
+            average: VolumeFormat.display(avgMl, _store.unit),
+            total: VolumeFormat.display(totalMl, _store.unit),
           ),
           SizedBox(
-            height: 180,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+            height: 190,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(20, 12, 20, 6),
+              padding: const EdgeInsets.fromLTRB(12, 16, 12, 8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.9),
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: QwColors.primaryDeep.withValues(alpha: 0.08),
+                    blurRadius: 18,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
               child: _tab.index == 2
                   ? _lineChart(totals, goalOz)
                   : _barChart(totals, goal),
@@ -157,9 +131,9 @@ class _HistoryTabState extends State<HistoryTab>
             barRods: [
               BarChartRodData(
                 toY: totals[i].toDouble(),
-                color: Colors.white,
+                gradient: QwGradients.primary,
                 width: 16,
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(8),
               ),
             ],
           );
@@ -182,7 +156,7 @@ class _HistoryTabState extends State<HistoryTab>
               interval: 3,
               getTitlesWidget: (v, _) => Text(
                 '${v.toInt() + 1}',
-                style: const TextStyle(color: Colors.white54, fontSize: 10),
+                style: const TextStyle(color: QwColors.muted, fontSize: 10),
               ),
             ),
           ),
@@ -200,13 +174,13 @@ class _HistoryTabState extends State<HistoryTab>
           horizontalLines: [
             HorizontalLine(
               y: goalOz * 0.87,
-              color: Colors.white54,
+              color: QwColors.line,
               dashArray: [4, 4],
               label: HorizontalLineLabel(
                 show: true,
                 alignment: Alignment.centerLeft,
                 labelResolver: (_) => '${goalOz.toStringAsFixed(0)} oz',
-                style: const TextStyle(color: Colors.white70, fontSize: 10),
+                style: const TextStyle(color: QwColors.muted, fontSize: 10),
               ),
             ),
           ],
@@ -218,12 +192,12 @@ class _HistoryTabState extends State<HistoryTab>
               (i) => FlSpot(i.toDouble(), VolumeFormat.ozFromMl(totals[i])),
             ),
             isCurved: true,
-            color: Colors.white,
+            color: QwColors.primary,
             barWidth: 2,
             dotData: FlDotData(
               getDotPainter: (s, p, bar, i) => FlDotCirclePainter(
                 radius: i == totals.length - 1 ? 4 : 0,
-                color: Colors.white,
+                color: QwColors.primary,
               ),
             ),
             belowBarData: BarAreaData(
@@ -233,7 +207,7 @@ class _HistoryTabState extends State<HistoryTab>
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.white.withValues(alpha: 0.2),
-                  Colors.transparent,
+                  QwColors.primary.withValues(alpha: 0.03),
                 ],
               ),
             ),
@@ -261,46 +235,154 @@ class _HistoryTabState extends State<HistoryTab>
             Text(
               dateLabel,
               style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
+                color: QwColors.ink,
+                fontWeight: FontWeight.w900,
               ),
             ),
             const Spacer(),
             Text(
               VolumeFormat.display(dayTotal, _store.unit),
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(
+                color: QwColors.primary,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ],
         ),
         const SizedBox(height: 8),
-        ...records.map(
-          (r) => Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        if (records.isEmpty)
+          Container(
+            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.15),
-              borderRadius: BorderRadius.circular(16),
+              color: Colors.white.withValues(alpha: 0.9),
+              borderRadius: BorderRadius.circular(24),
             ),
-            child: Row(
+            child: const Row(
               children: [
-                Text(
-                  VolumeFormat.display(r.volumeMl, _store.unit),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                QwAssetIcon(
+                  asset: QwAssets.historyRecord,
+                  label: 'No records icon',
+                  size: 54,
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    'No drinks logged yet today.',
+                    style: TextStyle(
+                      color: QwColors.muted,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
-                const Spacer(),
+              ],
+            ),
+          )
+        else
+          ...records.map(
+            (r) => Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.9),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                children: [
+                  const QwAssetIcon(
+                    asset: QwAssets.historyRecord,
+                    label: 'Drink record icon',
+                    size: 42,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    VolumeFormat.display(r.volumeMl, _store.unit),
+                    style: const TextStyle(
+                      color: QwColors.ink,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    DateFormat('HH:mm').format(r.recordedAt),
+                    style: const TextStyle(
+                      color: QwColors.muted,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _HistoryHero extends StatelessWidget {
+  const _HistoryHero({required this.average, required this.total});
+
+  final String average;
+  final String total;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      padding: const EdgeInsets.fromLTRB(18, 14, 14, 14),
+      decoration: BoxDecoration(
+        gradient: QwGradients.card,
+        borderRadius: BorderRadius.circular(28),
+        boxShadow: [
+          BoxShadow(
+            color: QwColors.primaryDeep.withValues(alpha: 0.18),
+            blurRadius: 26,
+            offset: const Offset(0, 12),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
-                  DateFormat('HH:mm').format(r.recordedAt),
-                  style: const TextStyle(color: Colors.white70),
+                  'Daily Average',
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.82),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  average,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Total $total',
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.78),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ],
             ),
           ),
-        ),
-      ],
+          const QwAssetIcon(
+            asset: QwAssets.historyAnalytics,
+            label: 'Hydration analytics illustration',
+            size: 112,
+          ),
+        ],
+      ),
     );
   }
 }

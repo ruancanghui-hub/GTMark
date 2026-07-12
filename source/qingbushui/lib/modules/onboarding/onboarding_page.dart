@@ -5,7 +5,9 @@ import '../../core/hydration/goal_calculator.dart';
 import '../../core/hydration/hydration_store.dart';
 import '../../core/hydration/models.dart';
 import '../../core/hydration/volume_format.dart';
+import '../../shared/assets/qw_assets.dart';
 import '../../shared/visuals/qw_water_bottle_hero.dart';
+import '../../shared/widgets/qw_asset_icon.dart';
 import '../../shared/widgets/qw_screen_shell.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -106,7 +108,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   crossAxisSpacing: 12,
                   children: [
                     _card(
-                      _gender == Gender.female ? '👩 Female' : '👨 Male',
+                      _gender == Gender.female ? 'Female' : 'Male',
+                      badge: _gender == Gender.female ? 'F' : 'M',
                       onTap: () => setState(() {
                         _gender = _gender == Gender.female
                             ? Gender.male
@@ -116,11 +119,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     ),
                     _card(
                       '${_weightLbs.toInt()} lbs',
+                      asset: QwAssets.onboardingWeight,
                       onTap: () => _pickWeight(),
                     ),
                     _card(
                       _activityLabel(),
-                      icon: Icons.bar_chart,
+                      asset: QwAssets.onboardingActivity,
                       onTap: () => setState(() {
                         _activity =
                             ActivityLevel.values[(_activity.index + 1) % 3];
@@ -130,7 +134,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     _card(
                       _climate.name[0].toUpperCase() +
                           _climate.name.substring(1),
-                      icon: Icons.ac_unit,
+                      asset: QwAssets.onboardingClimate,
                       onTap: () => setState(() {
                         _climate = Climate.values[(_climate.index + 1) % 3];
                         _recalc();
@@ -169,7 +173,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
     }
   }
 
-  Widget _card(String label, {IconData? icon, required VoidCallback onTap}) {
+  Widget _card(
+    String label, {
+    String? asset,
+    String? badge,
+    required VoidCallback onTap,
+  }) {
     return Material(
       color: Colors.white.withValues(alpha: 0.86),
       borderRadius: BorderRadius.circular(20),
@@ -180,8 +189,28 @@ class _OnboardingPageState extends State<OnboardingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (icon != null) Icon(icon, color: QwColors.primary, size: 32),
-              if (icon != null) const SizedBox(height: 8),
+              if (asset != null)
+                QwAssetIcon(asset: asset, label: '$label icon', size: 58)
+              else
+                Container(
+                  width: 58,
+                  height: 58,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: QwGradients.primary,
+                  ),
+                  child: Center(
+                    child: Text(
+                      badge ?? '',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                ),
+              const SizedBox(height: 8),
               Text(
                 label,
                 style: const TextStyle(

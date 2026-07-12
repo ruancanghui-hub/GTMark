@@ -78,10 +78,13 @@ class _HomeTabState extends State<HomeTab> {
                   spacing: 10,
                   runSpacing: 10,
                   children: const [
-                    QwGlassChip(icon: Icons.water_drop_rounded, label: 'Today'),
-                    QwGlassChip(icon: Icons.flag_rounded, label: 'Goal'),
+                    QwGlassChip(asset: QwAssets.navToday, label: 'Today'),
                     QwGlassChip(
-                      icon: Icons.notifications_rounded,
+                      asset: QwAssets.settingDailyGoal,
+                      label: 'Goal',
+                    ),
+                    QwGlassChip(
+                      asset: QwAssets.settingReminder,
                       label: 'Reminder',
                     ),
                   ],
@@ -269,9 +272,13 @@ class _HomeHeader extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
           ),
-          child: const Icon(
-            Icons.notifications_none_rounded,
-            color: Colors.white,
+          child: const Padding(
+            padding: EdgeInsets.all(7),
+            child: QwAssetIcon(
+              asset: QwAssets.settingReminder,
+              label: 'Reminder',
+              size: 28,
+            ),
           ),
         ),
       ],
@@ -302,7 +309,11 @@ class _GoalPill extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.search_rounded, color: Color(0xFFB9C6D5), size: 24),
+          const QwAssetIcon(
+            asset: QwAssets.settingDailyGoal,
+            label: 'Daily goal icon',
+            size: 28,
+          ),
           const SizedBox(width: 10),
           const Text(
             'Daily goal',

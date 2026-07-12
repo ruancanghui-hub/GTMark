@@ -49,6 +49,27 @@ class QwAssets {
   static const quick12Oz = 'assets/qw_crystal/generated_icons/quick_12oz.png';
   static const quick16Oz = 'assets/qw_crystal/generated_icons/quick_16oz.png';
   static const quick20Oz = 'assets/qw_crystal/generated_icons/quick_20oz.png';
+  static const drinkSelectHero =
+      'assets/qw_crystal/generated_icons/drink_select_hero.png';
+  static const slideTallGlass =
+      'assets/qw_crystal/generated_icons/slide_tall_glass.png';
+  static const confirmWaterDrop =
+      'assets/qw_crystal/generated_icons/confirm_water_drop.png';
+  static const historyAnalytics =
+      'assets/qw_crystal/generated_icons/history_analytics.png';
+  static const historyRecord =
+      'assets/qw_crystal/generated_icons/history_record.png';
+  static const muteNightHero =
+      'assets/qw_crystal/generated_icons/mute_night_hero.png';
+  static const onboardingWeight =
+      'assets/qw_crystal/generated_icons/onboarding_weight.png';
+  static const onboardingActivity =
+      'assets/qw_crystal/generated_icons/onboarding_activity.png';
+  static const onboardingClimate =
+      'assets/qw_crystal/generated_icons/onboarding_climate.png';
+  static const sliderHandle =
+      'assets/qw_crystal/generated_icons/slider_handle.png';
+  static const removeAds = 'assets/qw_crystal/generated_icons/remove_ads.png';
 
   static String quickCupForOz(double oz) {
     if (oz <= 8) return quick8Oz;

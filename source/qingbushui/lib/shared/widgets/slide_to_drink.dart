@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/qing_theme.dart';
+import '../assets/qw_assets.dart';
+import 'qw_asset_icon.dart';
 
 class SlideToDrink extends StatefulWidget {
   const SlideToDrink({
@@ -54,11 +56,29 @@ class _SlideToDrinkState extends State<SlideToDrink> {
               widget.onChanged(_fillToOz(_fill));
             });
           },
-          child: CustomPaint(
-            size: Size(constraints.maxWidth, h),
-            painter: _GlassPainter(fill: _fill),
+          child: SizedBox(
+            width: constraints.maxWidth,
+            height: h,
             child: Stack(
+              alignment: Alignment.center,
               children: [
+                Positioned.fill(
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 220),
+                    opacity: 0.82 + _fill * 0.18,
+                    child: const FittedBox(
+                      fit: BoxFit.contain,
+                      child: QwAssetIcon(
+                        asset: QwAssets.slideTallGlass,
+                        label: 'Amount measuring glass',
+                        size: 310,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: CustomPaint(painter: _FillGlowPainter(fill: _fill)),
+                ),
                 Positioned(
                   left: constraints.maxWidth / 2 - 28,
                   top: handleY - 28,
@@ -76,10 +96,13 @@ class _SlideToDrinkState extends State<SlideToDrink> {
                         ),
                       ],
                     ),
-                    child: const Icon(
-                      Icons.swap_vert_rounded,
-                      color: Colors.white,
-                      size: 30,
+                    child: const Padding(
+                      padding: EdgeInsets.all(7),
+                      child: QwAssetIcon(
+                        asset: QwAssets.sliderHandle,
+                        label: 'Adjust amount',
+                        size: 42,
+                      ),
                     ),
                   ),
                 ),
@@ -92,88 +115,27 @@ class _SlideToDrinkState extends State<SlideToDrink> {
   }
 }
 
-class _GlassPainter extends CustomPainter {
-  _GlassPainter({required this.fill});
+class _FillGlowPainter extends CustomPainter {
+  _FillGlowPainter({required this.fill});
 
   final double fill;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final w = size.width * 0.55;
-    final left = (size.width - w) / 2;
-    final top = size.height * 0.05;
-    final bottom = size.height * 0.95;
-    final glassH = bottom - top;
-    final path = Path()
-      ..moveTo(left + w * 0.15, top)
-      ..lineTo(left + w * 0.85, top)
-      ..lineTo(left + w * 0.7, bottom)
-      ..lineTo(left + w * 0.3, bottom)
-      ..close();
-
-    final glassPaint = Paint()
-      ..shader = const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Color(0xFFF4FDFF), Color(0xFFD8F4FF), Color(0xFFB3E5FF)],
-      ).createShader(Rect.fromLTWH(left, top, w, glassH));
-    canvas.drawPath(path, glassPaint);
-
-    final waterTop = bottom - glassH * fill;
-    final waterPath = Path()
-      ..moveTo(left + w * 0.3, bottom)
-      ..lineTo(left + w * 0.7, bottom)
-      ..lineTo(left + w * 0.68, waterTop + 8)
-      ..quadraticBezierTo(
-        left + w * 0.5,
-        waterTop - 6,
-        left + w * 0.32,
-        waterTop + 8,
-      )
-      ..close();
-    final waterPaint = Paint()
-      ..shader = const LinearGradient(
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter,
-        colors: [WtColors.blueDeep, WtColors.blueMid, WtColors.blueLight],
-      ).createShader(Rect.fromLTWH(left, waterTop, w, bottom - waterTop));
-    canvas.drawPath(waterPath, waterPaint);
-
-    final shine = Paint()..color = Colors.white.withValues(alpha: 0.38);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(
-          left + w * 0.24,
-          top + glassH * 0.12,
-          w * 0.12,
-          glassH * 0.36,
-        ),
-        const Radius.circular(14),
-      ),
-      shine,
-    );
-
-    final tickPaint = Paint()
-      ..color = Colors.white70
-      ..strokeWidth = 1.5;
-    for (var i = 1; i <= 8; i++) {
-      final y = bottom - glassH * (i / 8);
-      canvas.drawLine(
-        Offset(left + w * 0.38, y),
-        Offset(left + w * 0.62, y),
-        tickPaint,
-      );
-    }
-
-    canvas.drawPath(
-      path,
-      Paint()
-        ..color = Colors.white.withValues(alpha: 0.72)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2.4,
-    );
+    final center = Offset(size.width / 2, size.height * (1 - fill));
+    final radius = size.width * (0.16 + fill * 0.08);
+    final glow = Paint()
+      ..shader = RadialGradient(
+        colors: [
+          QwColors.aqua.withValues(alpha: 0.3),
+          QwColors.primary.withValues(alpha: 0.08),
+          Colors.transparent,
+        ],
+      ).createShader(Rect.fromCircle(center: center, radius: radius * 2.2))
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18);
+    canvas.drawCircle(center, radius, glow);
   }
 
   @override
-  bool shouldRepaint(covariant _GlassPainter old) => old.fill != fill;
+  bool shouldRepaint(covariant _FillGlowPainter old) => old.fill != fill;
 }
