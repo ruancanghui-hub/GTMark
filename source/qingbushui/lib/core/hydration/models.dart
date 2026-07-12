@@ -98,6 +98,14 @@ class ReminderPrefs {
     this.muteAtNight = true,
     this.muteEndHour = 7,
     this.muteEndMinute = 0,
+    this.wakeUpHour = 8,
+    this.wakeUpMinute = 0,
+    this.beforeMealHour = 11,
+    this.beforeMealMinute = 30,
+    this.afterMealHour = 13,
+    this.afterMealMinute = 30,
+    this.bedtimeHour = 21,
+    this.bedtimeMinute = 30,
   });
 
   final bool enabled;
@@ -108,6 +116,14 @@ class ReminderPrefs {
   final bool muteAtNight;
   final int muteEndHour;
   final int muteEndMinute;
+  final int wakeUpHour;
+  final int wakeUpMinute;
+  final int beforeMealHour;
+  final int beforeMealMinute;
+  final int afterMealHour;
+  final int afterMealMinute;
+  final int bedtimeHour;
+  final int bedtimeMinute;
 
   ReminderPrefs copyWith({
     bool? enabled,
@@ -118,6 +134,14 @@ class ReminderPrefs {
     bool? muteAtNight,
     int? muteEndHour,
     int? muteEndMinute,
+    int? wakeUpHour,
+    int? wakeUpMinute,
+    int? beforeMealHour,
+    int? beforeMealMinute,
+    int? afterMealHour,
+    int? afterMealMinute,
+    int? bedtimeHour,
+    int? bedtimeMinute,
   }) {
     return ReminderPrefs(
       enabled: enabled ?? this.enabled,
@@ -128,6 +152,14 @@ class ReminderPrefs {
       muteAtNight: muteAtNight ?? this.muteAtNight,
       muteEndHour: muteEndHour ?? this.muteEndHour,
       muteEndMinute: muteEndMinute ?? this.muteEndMinute,
+      wakeUpHour: wakeUpHour ?? this.wakeUpHour,
+      wakeUpMinute: wakeUpMinute ?? this.wakeUpMinute,
+      beforeMealHour: beforeMealHour ?? this.beforeMealHour,
+      beforeMealMinute: beforeMealMinute ?? this.beforeMealMinute,
+      afterMealHour: afterMealHour ?? this.afterMealHour,
+      afterMealMinute: afterMealMinute ?? this.afterMealMinute,
+      bedtimeHour: bedtimeHour ?? this.bedtimeHour,
+      bedtimeMinute: bedtimeMinute ?? this.bedtimeMinute,
     );
   }
 }

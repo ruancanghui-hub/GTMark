@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../app/qing_theme.dart';
 import '../../core/hydration/drink_catalog.dart';
+import '../../l10n/app_localizations.dart';
 import '../../shared/assets/qw_assets.dart';
 import '../../shared/widgets/qw_asset_icon.dart';
 import '../../shared/widgets/qw_glass_chip.dart';
@@ -13,6 +14,7 @@ class DrinkSelectPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final presets = DrinkCatalog.all();
     final water = presets.where((p) => p.section == 'WATER').toList();
     final other = presets.where((p) => p.section == 'OTHER').toList();
@@ -24,17 +26,17 @@ class DrinkSelectPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-              child: _Header(onBack: () => Modular.to.pop()),
+              child: _Header(onBack: () => Modular.to.pop(), title: l10n.chooseYourSip),
             ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(20, 18, 20, 32),
                 children: [
-                  const _HeroCard(),
+                  _HeroCard(title: l10n.buildYourCup),
                   const SizedBox(height: 22),
-                  _section('Water', water),
+                  _section(context, l10n.sectionWater, water, isWater: true),
                   const SizedBox(height: 26),
-                  _section('Other drinks', other),
+                  _section(context, l10n.sectionOther, other, isWater: false),
                 ],
               ),
             ),
@@ -44,7 +46,12 @@ class DrinkSelectPage extends StatelessWidget {
     );
   }
 
-  Widget _section(String title, List<DrinkPreset> items) {
+  Widget _section(
+    BuildContext context,
+    String title,
+    List<DrinkPreset> items, {
+    required bool isWater,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -64,10 +71,10 @@ class DrinkSelectPage extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             QwGlassChip(
-              asset: title == 'Water'
+              asset: isWater
                   ? QwAssets.drinkWaterGlass
                   : QwAssets.drinkCoffee,
-              label: '${items.length} choices',
+              label: AppLocalizations.of(context).choicesCount(items.length),
             ),
           ],
         ),
@@ -82,17 +89,19 @@ class DrinkSelectPage extends StatelessWidget {
             childAspectRatio: 0.76,
           ),
           itemCount: items.length,
-          itemBuilder: (_, i) => _drinkItem(items[i]),
+          itemBuilder: (_, i) => _drinkItem(context, items[i]),
         ),
       ],
     );
   }
 
-  Widget _drinkItem(DrinkPreset preset) {
+  Widget _drinkItem(BuildContext context, DrinkPreset preset) {
     return Builder(
       builder: (context) {
+        final l10n = AppLocalizations.of(context);
+        final label = l10n.drinkPresetLabel(preset.labelKey);
         final color = Color(preset.fillColor);
-        final asset = QwAssets.drinkIconFor(preset.type, label: preset.label);
+        final asset = QwAssets.drinkIconFor(preset.type, label: label);
         return Material(
           color: Colors.transparent,
           child: InkWell(
@@ -101,7 +110,7 @@ class DrinkSelectPage extends StatelessWidget {
               arguments: {
                 'type': preset.type.index,
                 'oz': preset.defaultOz,
-                'label': preset.label,
+                'label': preset.labelKey,
               },
             ),
             borderRadius: BorderRadius.circular(24),
@@ -148,7 +157,7 @@ class DrinkSelectPage extends StatelessWidget {
                           )
                         : QwAssetIcon(
                             asset: asset,
-                            label: '${preset.label} crystal drink icon',
+                            label: '$label crystal drink icon',
                             size: 64,
                           ),
                   ),
@@ -156,7 +165,7 @@ class DrinkSelectPage extends StatelessWidget {
                   Expanded(
                     child: Center(
                       child: Text(
-                        preset.label,
+                        label,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -188,9 +197,10 @@ class DrinkSelectPage extends StatelessWidget {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.onBack});
+  const _Header({required this.onBack, required this.title});
 
   final VoidCallback onBack;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -209,10 +219,10 @@ class _Header extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        const Expanded(
+        Expanded(
           child: Text(
-            'Choose your sip',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 24,
               fontWeight: FontWeight.w900,
@@ -225,10 +235,13 @@ class _Header extends StatelessWidget {
 }
 
 class _HeroCard extends StatelessWidget {
-  const _HeroCard();
+  const _HeroCard({required this.title});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       height: 156,
       padding: const EdgeInsets.all(18),
@@ -250,11 +263,11 @@ class _HeroCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Build your cup',
+                Text(
+                  title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,
                     fontWeight: FontWeight.w900,
@@ -262,7 +275,7 @@ class _HeroCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Pick a drink, then slide to tune the exact amount.',
+                  l10n.pickDrinkHint,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -286,9 +299,9 @@ class _HeroCard extends StatelessWidget {
                 child: Opacity(opacity: value.clamp(0, 1), child: child),
               );
             },
-            child: const QwAssetIcon(
+            child: QwAssetIcon(
               asset: QwAssets.drinkSelectHero,
-              label: 'Build your cup crystal illustration',
+              label: AppLocalizations.of(context).buildYourCup,
               size: 132,
             ),
           ),

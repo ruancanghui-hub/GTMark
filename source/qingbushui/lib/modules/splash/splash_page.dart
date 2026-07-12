@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../app/qing_theme.dart';
 import '../../core/hydration/hydration_store.dart';
+import '../../l10n/app_localizations.dart';
 import '../../shared/visuals/qw_water_bottle_hero.dart';
 import '../../shared/widgets/qw_screen_shell.dart';
 
@@ -32,33 +33,34 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
       body: QwScreenShell(
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              QwWaterBottleHero(progress: 0.62, size: 190),
-              SizedBox(height: 22),
+              const QwWaterBottleHero(progress: 0.62, size: 190),
+              const SizedBox(height: 22),
               Text(
-                'Qing Water',
-                style: TextStyle(
+                l10n.appTitle,
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 34,
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
-                'Hydrate gently',
-                style: TextStyle(
+                l10n.appTagline,
+                style: const TextStyle(
                   color: QwColors.surface,
                   fontSize: 16,
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              SizedBox(height: 30),
-              SizedBox(
+              const SizedBox(height: 30),
+              const SizedBox(
                 width: 38,
                 height: 38,
                 child: CircularProgressIndicator(

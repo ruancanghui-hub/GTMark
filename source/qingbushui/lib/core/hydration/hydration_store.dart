@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../l10n/app_locale.dart';
 import 'models.dart';
 import 'stats_service.dart';
 
@@ -11,6 +12,7 @@ class HydrationStore extends ChangeNotifier {
   HydrationStore();
 
   static final ValueNotifier<int> themeListenable = ValueNotifier(0);
+  static final ValueNotifier<int> localeListenable = ValueNotifier(0);
   static SharedPreferences? _prefs;
   static HydrationStore? _instance;
 
@@ -21,12 +23,14 @@ class HydrationStore extends ChangeNotifier {
   List<IntakeRecord> _records = [];
   VolumeUnit _unit = VolumeUnit.oz;
   ThemeMode _themeMode = ThemeMode.system;
+  AppLocale _locale = AppLocale.zh;
   ReminderPrefs _reminders = const ReminderPrefs();
 
   UserProfile? get profile => _profile;
   List<IntakeRecord> get records => List.unmodifiable(_records);
   VolumeUnit get unit => _unit;
   ThemeMode get themeMode => _themeMode;
+  AppLocale get locale => _locale;
   ReminderPrefs get reminders => _reminders;
 
   static Future<void> init() async {
@@ -37,6 +41,10 @@ class HydrationStore extends ChangeNotifier {
 
   static ThemeMode currentThemeMode() {
     return _instance?._themeMode ?? ThemeMode.system;
+  }
+
+  static AppLocale currentLocale() {
+    return _instance?._locale ?? AppLocale.zh;
   }
 
   Future<void> _load() async {
@@ -66,6 +74,7 @@ class HydrationStore extends ChangeNotifier {
     }).toList();
     _unit = VolumeUnit.values[p.getInt('unit') ?? VolumeUnit.oz.index];
     _themeMode = ThemeMode.values[p.getInt('themeMode') ?? 0];
+    _locale = AppLocale.fromCode(p.getString('locale'));
     final reminderJson = p.getString('reminders');
     if (reminderJson != null) {
       final m = jsonDecode(reminderJson) as Map<String, dynamic>;
@@ -78,6 +87,14 @@ class HydrationStore extends ChangeNotifier {
         muteAtNight: m['muteAtNight'] as bool? ?? true,
         muteEndHour: m['muteEndHour'] as int? ?? 7,
         muteEndMinute: m['muteEndMinute'] as int? ?? 0,
+        wakeUpHour: m['wakeUpHour'] as int? ?? 8,
+        wakeUpMinute: m['wakeUpMinute'] as int? ?? 0,
+        beforeMealHour: m['beforeMealHour'] as int? ?? 11,
+        beforeMealMinute: m['beforeMealMinute'] as int? ?? 30,
+        afterMealHour: m['afterMealHour'] as int? ?? 13,
+        afterMealMinute: m['afterMealMinute'] as int? ?? 30,
+        bedtimeHour: m['bedtimeHour'] as int? ?? 21,
+        bedtimeMinute: m['bedtimeMinute'] as int? ?? 30,
       );
     }
     notifyListeners();
@@ -112,6 +129,14 @@ class HydrationStore extends ChangeNotifier {
         'muteAtNight': prefs.muteAtNight,
         'muteEndHour': prefs.muteEndHour,
         'muteEndMinute': prefs.muteEndMinute,
+        'wakeUpHour': prefs.wakeUpHour,
+        'wakeUpMinute': prefs.wakeUpMinute,
+        'beforeMealHour': prefs.beforeMealHour,
+        'beforeMealMinute': prefs.beforeMealMinute,
+        'afterMealHour': prefs.afterMealHour,
+        'afterMealMinute': prefs.afterMealMinute,
+        'bedtimeHour': prefs.bedtimeHour,
+        'bedtimeMinute': prefs.bedtimeMinute,
       }),
     );
     notifyListeners();
@@ -133,6 +158,43 @@ class HydrationStore extends ChangeNotifier {
     _records = [record, ..._records];
     await _persistRecords();
     notifyListeners();
+  }
+
+  Future<bool> updateIntake(IntakeRecord updated) async {
+    final index = _records.indexWhere((record) => record.id == updated.id);
+    if (index == -1) return false;
+
+    final nextRecords = [..._records];
+    nextRecords[index] = updated;
+    nextRecords.sort((a, b) => b.recordedAt.compareTo(a.recordedAt));
+    _records = nextRecords;
+    await _persistRecords();
+    notifyListeners();
+    return true;
+  }
+
+  Future<bool> deleteIntake(String id) async {
+    final nextRecords = _records.where((record) => record.id != id).toList();
+    if (nextRecords.length == _records.length) return false;
+
+    _records = nextRecords;
+    await _persistRecords();
+    notifyListeners();
+    return true;
+  }
+
+  Future<void> addFeedback(String message, {DateTime? at}) async {
+    final trimmed = message.trim();
+    if (trimmed.isEmpty) return;
+
+    final current = _prefs!.getStringList('feedback') ?? [];
+    await _prefs!.setStringList('feedback', [
+      jsonEncode({
+        'message': trimmed,
+        'createdAt': (at ?? DateTime.now()).toIso8601String(),
+      }),
+      ...current,
+    ]);
   }
 
   Future<void> _persistRecords() async {
@@ -166,6 +228,13 @@ class HydrationStore extends ChangeNotifier {
     _themeMode = mode;
     await _prefs!.setInt('themeMode', mode.index);
     themeListenable.value++;
+    notifyListeners();
+  }
+
+  Future<void> setLocale(AppLocale locale) async {
+    _locale = locale;
+    await _prefs!.setString('locale', locale.code);
+    localeListenable.value++;
     notifyListeners();
   }
 

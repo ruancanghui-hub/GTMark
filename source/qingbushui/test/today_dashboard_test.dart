@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'l10n_test_harness.dart';
 import 'package:qingbushui/core/hydration/hydration_store.dart';
 import 'package:qingbushui/core/hydration/models.dart';
 import 'package:qingbushui/core/hydration/volume_format.dart';
@@ -16,15 +18,11 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     await HydrationStore.init();
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: HomeTab(onNavTap: (_) {})),
-      ),
-    );
+    await pumpL10nApp(tester, Scaffold(body: HomeTab(onNavTap: (_) {})));
     await tester.pumpAndSettle();
 
     expect(find.text('Qing Water'), findsOneWidget);
-    expect(find.text('Daily goal'), findsOneWidget);
+    expect(find.text('Daily Goal'), findsOneWidget);
     expect(find.text('Today'), findsWidgets);
     expect(find.text('Quick add'), findsOneWidget);
     expect(find.text('8 oz'), findsOneWidget);
@@ -47,11 +45,7 @@ void main() {
       at: DateTime.now(),
     );
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: HomeTab(onNavTap: (_) {})),
-      ),
-    );
+    await pumpL10nApp(tester, Scaffold(body: HomeTab(onNavTap: (_) {})));
     await tester.pumpAndSettle();
     await tester.drag(find.byType(ListView), const Offset(0, -360));
     await tester.pumpAndSettle();

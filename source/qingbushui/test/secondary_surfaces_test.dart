@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'l10n_test_harness.dart';
 import 'package:qingbushui/core/hydration/hydration_store.dart';
 import 'package:qingbushui/modules/insights/insights_tab.dart';
 import 'package:qingbushui/modules/me/me_tab.dart';
@@ -22,39 +24,35 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: HistoryTab(onNavTap: (_) {})),
+    await tester.pumpWidget(l10nTestApp(Scaffold(body: HistoryTab(onNavTap: (_) {})),
       ),
     );
     await tester.pumpAndSettle();
     expect(find.text('Day'), findsOneWidget);
     expect(find.text('Daily Average'), findsOneWidget);
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: InsightsTab(onNavTap: (_) {})),
+    await tester.pumpWidget(l10nTestApp(Scaffold(body: InsightsTab(onNavTap: (_) {})),
       ),
     );
     await tester.pumpAndSettle();
     expect(find.text('INSIGHTS'), findsOneWidget);
     expect(find.text('Water Drinking'), findsOneWidget);
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: MeTab(onNavTap: (_) {})),
+    await tester.pumpWidget(l10nTestApp(Scaffold(body: MeTab(onNavTap: (_) {})),
       ),
     );
     await tester.pumpAndSettle();
     expect(find.text('Me'), findsWidgets);
     expect(find.text('Unit'), findsOneWidget);
 
-    await tester.pumpWidget(const MaterialApp(home: ReminderSettingsPage()));
+    await tester.pumpWidget(l10nTestApp(ReminderSettingsPage()));
     await tester.pumpAndSettle();
     expect(find.text('Reminders'), findsOneWidget);
+    expect(find.text('4 daily reminders ready'), findsOneWidget);
+    expect(find.text('Enable notifications'), findsOneWidget);
     expect(find.text('Wake-up water'), findsOneWidget);
 
-    await tester.pumpWidget(const MaterialApp(home: OnboardingPage()));
+    await tester.pumpWidget(l10nTestApp(OnboardingPage()));
     await tester.pumpAndSettle();
     expect(find.text('Your daily goal is'), findsOneWidget);
     expect(find.text('Start hydrating'), findsOneWidget);

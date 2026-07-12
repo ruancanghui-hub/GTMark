@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import '../../app/qing_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/hydration/hydration_store.dart';
+import '../../core/hydration/models.dart';
 import '../../core/hydration/volume_format.dart';
 import '../../shared/assets/qw_assets.dart';
 import '../../shared/widgets/qw_asset_icon.dart';
@@ -76,10 +78,10 @@ class _HistoryTabState extends State<HistoryTab>
             indicatorWeight: 3,
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white60,
-            tabs: const [
-              Tab(text: 'Day'),
-              Tab(text: 'Week'),
-              Tab(text: 'Month'),
+            tabs: [
+              Tab(text: AppLocalizations.of(context).tabDay),
+              Tab(text: AppLocalizations.of(context).tabWeek),
+              Tab(text: AppLocalizations.of(context).tabMonth),
             ],
           ),
           _HistoryHero(
@@ -218,6 +220,7 @@ class _HistoryTabState extends State<HistoryTab>
   }
 
   Widget _historyList() {
+    final l10n = AppLocalizations.of(context);
     final today = DateTime.now();
     final records = _store.records.where((r) {
       return r.recordedAt.year == today.year &&
@@ -225,7 +228,8 @@ class _HistoryTabState extends State<HistoryTab>
           r.recordedAt.day == today.day;
     }).toList();
     final dayTotal = records.fold<int>(0, (s, r) => s + r.volumeMl);
-    final dateLabel = DateFormat('MMM d').format(today);
+    final locale = l10n.isZh ? 'zh_CN' : 'en_US';
+    final dateLabel = DateFormat.MMMd(locale).format(today);
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
@@ -257,17 +261,17 @@ class _HistoryTabState extends State<HistoryTab>
               color: Colors.white.withValues(alpha: 0.9),
               borderRadius: BorderRadius.circular(24),
             ),
-            child: const Row(
+            child: Row(
               children: [
                 QwAssetIcon(
                   asset: QwAssets.historyRecord,
-                  label: 'No records icon',
+                  label: l10n.noRecords,
                   size: 54,
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'No drinks logged yet today.',
+                    l10n.noDrinksToday,
                     style: TextStyle(
                       color: QwColors.muted,
                       fontWeight: FontWeight.w800,
@@ -279,43 +283,335 @@ class _HistoryTabState extends State<HistoryTab>
           )
         else
           ...records.map(
-            (r) => Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.9),
+            (r) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Material(
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  const QwAssetIcon(
-                    asset: QwAssets.historyRecord,
-                    label: 'Drink record icon',
-                    size: 42,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    VolumeFormat.display(r.volumeMl, _store.unit),
-                    style: const TextStyle(
-                      color: QwColors.ink,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 17,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () => _openRecordEditor(r),
+                  child: Ink(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.9),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: [
+                        QwAssetIcon(
+                          asset:
+                              QwAssets.drinkIconFor(r.drinkType) ??
+                              QwAssets.historyRecord,
+                          label: '${_drinkLabel(context, r.drinkType)} icon',
+                          size: 42,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            _drinkLabel(context, r.drinkType),
+                            style: const TextStyle(
+                              color: QwColors.ink,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          VolumeFormat.display(r.volumeMl, _store.unit),
+                          style: const TextStyle(
+                            color: QwColors.primary,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 16,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          DateFormat('HH:mm').format(r.recordedAt),
+                          style: const TextStyle(
+                            color: QwColors.muted,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        const Icon(
+                          Icons.chevron_right_rounded,
+                          color: QwColors.muted,
+                          size: 20,
+                        ),
+                      ],
                     ),
                   ),
-                  const Spacer(),
-                  Text(
-                    DateFormat('HH:mm').format(r.recordedAt),
-                    style: const TextStyle(
-                      color: QwColors.muted,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
       ],
     );
+  }
+
+  Future<void> _openRecordEditor(IntakeRecord record) async {
+    var selectedType = record.drinkType;
+    var volume = record.volumeMl.toDouble().clamp(50, 1200).toDouble();
+    var recordedAt = record.recordedAt;
+
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final l10n = AppLocalizations.of(context);
+            final locale = l10n.isZh ? 'zh_CN' : 'en_US';
+            return Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+              ),
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(18, 16, 18, 18),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: QwColors.primaryDeep.withValues(alpha: 0.18),
+                      blurRadius: 30,
+                      offset: const Offset(0, 14),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        QwAssetIcon(
+                          asset:
+                              QwAssets.drinkIconFor(selectedType) ??
+                              QwAssets.drinkWaterGlass,
+                          label: l10n.editDrink,
+                          size: 58,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l10n.editDrink,
+                                style: TextStyle(
+                                  color: QwColors.ink,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                DateFormat.yMMMd(locale).add_Hm().format(recordedAt),
+                                style: const TextStyle(
+                                  color: QwColors.muted,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: DrinkType.values.map((type) {
+                        final selected = selectedType == type;
+                        return ChoiceChip(
+                          label: Text(_drinkLabel(context, type)),
+                          selected: selected,
+                          onSelected: (_) =>
+                              setSheetState(() => selectedType = type),
+                          selectedColor: QwColors.primary.withValues(
+                            alpha: 0.16,
+                          ),
+                          labelStyle: TextStyle(
+                            color: selected ? QwColors.primary : QwColors.ink,
+                            fontWeight: FontWeight.w900,
+                          ),
+                          side: BorderSide(
+                            color: selected ? QwColors.primary : QwColors.line,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    const SizedBox(height: 18),
+                    Row(
+                      children: [
+                        Text(
+                          l10n.amount,
+                          style: TextStyle(
+                            color: QwColors.ink,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          VolumeFormat.display(volume.round(), _store.unit),
+                          style: const TextStyle(
+                            color: QwColors.primary,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      value: volume,
+                      min: 50,
+                      max: 1200,
+                      divisions: 46,
+                      activeColor: QwColors.primary,
+                      inactiveColor: QwColors.primary.withValues(alpha: 0.12),
+                      onChanged: (value) => setSheetState(() => volume = value),
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        Text(
+                          l10n.time,
+                          style: TextStyle(
+                            color: QwColors.ink,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          DateFormat('HH:mm').format(recordedAt),
+                          style: const TextStyle(
+                            color: QwColors.primary,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => setSheetState(
+                              () => recordedAt = recordedAt.subtract(
+                                const Duration(minutes: 15),
+                              ),
+                            ),
+                            child: Text(l10n.adjustTimeMinus),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => setSheetState(
+                              () => recordedAt = recordedAt.add(
+                                const Duration(minutes: 15),
+                              ),
+                            ),
+                            child: Text(l10n.adjustTimePlus),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: () async {
+                              await _deleteRecord(sheetContext, record);
+                            },
+                            icon: const Icon(Icons.delete_outline_rounded),
+                            label: Text(l10n.delete),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: const Color(0xFFE45B72),
+                              side: BorderSide(
+                                color: const Color(
+                                  0xFFE45B72,
+                                ).withValues(alpha: 0.4),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: FilledButton.icon(
+                            onPressed: () async {
+                              await _saveRecord(
+                                sheetContext,
+                                record.copyWith(
+                                  drinkType: selectedType,
+                                  volumeMl: volume.round(),
+                                  recordedAt: recordedAt,
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.check_rounded),
+                            label: Text(l10n.save),
+                            style: FilledButton.styleFrom(
+                              backgroundColor: QwColors.primary,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _saveRecord(
+    BuildContext sheetContext,
+    IntakeRecord record,
+  ) async {
+    final saved = await _store.updateIntake(record);
+    if (!mounted || !sheetContext.mounted) return;
+    Navigator.of(sheetContext).pop();
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(saved ? l10n.drinkUpdated : l10n.recordNotFound)),
+    );
+  }
+
+  Future<void> _deleteRecord(
+    BuildContext sheetContext,
+    IntakeRecord record,
+  ) async {
+    final deleted = await _store.deleteIntake(record.id);
+    if (!mounted || !sheetContext.mounted) return;
+    Navigator.of(sheetContext).pop();
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(deleted ? l10n.drinkDeleted : l10n.recordNotFound)),
+    );
+  }
+
+  String _drinkLabel(BuildContext context, DrinkType type) {
+    return AppLocalizations.of(context).drinkLabel(type);
   }
 }
 
@@ -327,6 +623,7 @@ class _HistoryHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
       padding: const EdgeInsets.fromLTRB(18, 14, 14, 14),
@@ -348,7 +645,7 @@ class _HistoryHero extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Daily Average',
+                  l10n.dailyAverage,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.82),
                     fontSize: 12,
@@ -366,7 +663,7 @@ class _HistoryHero extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Total $total',
+                  l10n.historyTotal(total),
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.78),
                     fontSize: 13,
@@ -376,9 +673,9 @@ class _HistoryHero extends StatelessWidget {
               ],
             ),
           ),
-          const QwAssetIcon(
+          QwAssetIcon(
             asset: QwAssets.historyAnalytics,
-            label: 'Hydration analytics illustration',
+            label: l10n.historyTitle,
             size: 112,
           ),
         ],

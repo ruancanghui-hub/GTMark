@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app/qing_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../assets/qw_assets.dart';
 import 'qw_asset_icon.dart';
 
@@ -18,6 +19,7 @@ class WtDrinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isWhite = style == WtDrinkButtonStyle.white;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -45,13 +47,13 @@ class WtDrinkButton extends StatelessWidget {
               children: [
                 QwAssetIcon(
                   asset: QwAssets.confirmWaterDrop,
-                  label: 'Confirm drink',
+                  label: l10n.confirmDrink,
                   size: 28,
                   opacity: isWhite ? 0.9 : 1,
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  'DRINK',
+                  l10n.drinkAction,
                   style: TextStyle(
                     color: isWhite ? Colors.black : Colors.white,
                     fontWeight: FontWeight.w700,

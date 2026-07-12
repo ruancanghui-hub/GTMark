@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app/qing_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../assets/qw_assets.dart';
 import 'qw_asset_icon.dart';
 
@@ -16,16 +17,17 @@ class QwBottomNav extends StatelessWidget {
   final ValueChanged<int> onTap;
   final VoidCallback onAdd;
 
-  static const _items = [
-    (QwAssets.navToday, 'Today'),
-    (QwAssets.navHistory, 'History'),
-    (QwAssets.navAdd, 'Add'),
-    (QwAssets.navInsights, 'Insights'),
-    (QwAssets.navMe, 'Me'),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final items = [
+      (QwAssets.navToday, l10n.navToday),
+      (QwAssets.navHistory, l10n.navHistory),
+      (QwAssets.navAdd, l10n.navAdd),
+      (QwAssets.navInsights, l10n.navInsights),
+      (QwAssets.navMe, l10n.navMe),
+    ];
+
     return SizedBox(
       height: 86,
       child: Stack(
@@ -58,23 +60,23 @@ class QwBottomNav extends StatelessWidget {
                 child: Row(
                   children: [
                     _NavItem(
-                      item: _items[0],
+                      item: items[0],
                       selected: index == 0,
                       onTap: () => onTap(0),
                     ),
                     _NavItem(
-                      item: _items[1],
+                      item: items[1],
                       selected: index == 1,
                       onTap: () => onTap(1),
                     ),
                     const Expanded(child: SizedBox()),
                     _NavItem(
-                      item: _items[3],
+                      item: items[3],
                       selected: index == 2,
                       onTap: () => onTap(2),
                     ),
                     _NavItem(
-                      item: _items[4],
+                      item: items[4],
                       selected: index == 3,
                       onTap: () => onTap(3),
                     ),
@@ -83,7 +85,7 @@ class QwBottomNav extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(top: 0, child: _AddButton(onPressed: onAdd)),
+          Positioned(top: 0, child: _AddButton(onPressed: onAdd, label: l10n.navAdd)),
         ],
       ),
     );
@@ -134,9 +136,10 @@ class _NavItem extends StatelessWidget {
 }
 
 class _AddButton extends StatefulWidget {
-  const _AddButton({required this.onPressed});
+  const _AddButton({required this.onPressed, required this.label});
 
   final VoidCallback onPressed;
+  final String label;
 
   @override
   State<_AddButton> createState() => _AddButtonState();
@@ -171,11 +174,11 @@ class _AddButtonState extends State<_AddButton> {
               ),
             ],
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(8),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
             child: QwAssetIcon(
               asset: QwAssets.navAdd,
-              label: 'Add drink',
+              label: widget.label,
               size: 48,
             ),
           ),

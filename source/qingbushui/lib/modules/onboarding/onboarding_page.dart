@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../app/qing_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/hydration/goal_calculator.dart';
 import '../../core/hydration/hydration_store.dart';
 import '../../core/hydration/models.dart';
@@ -41,6 +42,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final goalOz = VolumeFormat.display(_goalMl, VolumeUnit.oz);
     return Scaffold(
       body: QwScreenShell(
@@ -50,8 +52,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
             children: [
               const QwWaterBottleHero(progress: 0.72, size: 150),
               const SizedBox(height: 10),
-              const Text(
-                'Your daily goal is',
+              Text(
+                l10n.yourDailyGoalIs,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -85,12 +87,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 child: InkWell(
                   onTap: () => setState(_recalc),
                   borderRadius: BorderRadius.circular(28),
-                  child: const SizedBox(
+                  child: SizedBox(
                     width: double.infinity,
                     height: 52,
                     child: Center(
                       child: Text(
-                        'Calculate',
+                        l10n.calculate,
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
@@ -108,7 +110,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   crossAxisSpacing: 12,
                   children: [
                     _card(
-                      _gender == Gender.female ? 'Female' : 'Male',
+                      l10n.genderLabel(_gender),
                       badge: _gender == Gender.female ? 'F' : 'M',
                       onTap: () => setState(() {
                         _gender = _gender == Gender.female
@@ -118,12 +120,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       }),
                     ),
                     _card(
-                      '${_weightLbs.toInt()} lbs',
+                      l10n.weightLbs(_weightLbs.toInt()),
                       asset: QwAssets.onboardingWeight,
                       onTap: () => _pickWeight(),
                     ),
                     _card(
-                      _activityLabel(),
+                      _activityLabel(context),
                       asset: QwAssets.onboardingActivity,
                       onTap: () => setState(() {
                         _activity =
@@ -132,8 +134,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       }),
                     ),
                     _card(
-                      _climate.name[0].toUpperCase() +
-                          _climate.name.substring(1),
+                      l10n.climateLabel(_climate),
                       asset: QwAssets.onboardingClimate,
                       onTap: () => setState(() {
                         _climate = Climate.values[(_climate.index + 1) % 3];
@@ -150,9 +151,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   backgroundColor: Color(0xFFFFD66B),
                   foregroundColor: QwColors.ink,
                 ),
-                child: const Text(
-                  'Start hydrating',
-                  style: TextStyle(fontWeight: FontWeight.w900),
+                child: Text(
+                  l10n.startHydrating,
+                  style: const TextStyle(fontWeight: FontWeight.w900),
                 ),
               ),
             ],
@@ -162,15 +163,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
-  String _activityLabel() {
-    switch (_activity) {
-      case ActivityLevel.low:
-        return 'Sedentary';
-      case ActivityLevel.medium:
-        return 'Exercises';
-      case ActivityLevel.high:
-        return 'Athlete';
-    }
+  String _activityLabel(BuildContext context) {
+    return AppLocalizations.of(context).activityLabel(_activity);
   }
 
   Widget _card(
@@ -226,6 +220,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   Future<void> _pickWeight() async {
+    final l10n = AppLocalizations.of(context);
     var temp = _weightLbs;
     await showModalBottomSheet(
       context: context,
@@ -235,7 +230,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('${temp.toInt()} lbs', style: const TextStyle(fontSize: 24)),
+              Text(
+                l10n.weightLbs(temp.toInt()),
+                style: const TextStyle(fontSize: 24),
+              ),
               Slider(
                 value: temp,
                 min: 80,
@@ -251,7 +249,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   });
                   Navigator.pop(context);
                 },
-                child: const Text('OK'),
+                child: Text(l10n.ok),
               ),
             ],
           ),

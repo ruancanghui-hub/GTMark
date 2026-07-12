@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 
 import '../../app/qing_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/hydration/hydration_store.dart';
 import '../../core/hydration/models.dart';
 import '../../core/hydration/volume_format.dart';
@@ -48,7 +49,7 @@ class _HomeTabState extends State<HomeTab> {
     );
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('已记录 ${oz.toStringAsFixed(1)} oz')),
+        SnackBar(content: Text(AppLocalizations.of(context).recordLogged(oz))),
       );
     }
   }
@@ -70,22 +71,25 @@ class _HomeTabState extends State<HomeTab> {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(22, 10, 22, 20),
               children: [
-                const _HomeHeader(),
+                _HomeHeader(),
                 const SizedBox(height: 16),
                 _GoalPill(goalOz: goalOz),
                 const SizedBox(height: 14),
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
-                  children: const [
-                    QwGlassChip(asset: QwAssets.navToday, label: 'Today'),
+                  children: [
+                    QwGlassChip(
+                      asset: QwAssets.navToday,
+                      label: AppLocalizations.of(context).navToday,
+                    ),
                     QwGlassChip(
                       asset: QwAssets.settingDailyGoal,
-                      label: 'Goal',
+                      label: AppLocalizations.of(context).goal,
                     ),
                     QwGlassChip(
                       asset: QwAssets.settingReminder,
-                      label: 'Reminder',
+                      label: AppLocalizations.of(context).reminder,
                     ),
                   ],
                 ),
@@ -156,10 +160,10 @@ class _QuickAddPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Text(
-              'Quick add',
+              AppLocalizations.of(context).quickAdd,
               style: TextStyle(
                 color: QwColors.ink,
                 fontSize: 15,
@@ -255,8 +259,8 @@ class _HomeHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        const Text(
-          'Qing Water',
+        Text(
+          AppLocalizations.of(context).appTitle,
           style: TextStyle(
             color: Colors.white,
             fontSize: 23,
@@ -272,11 +276,11 @@ class _HomeHeader extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(7),
+          child: Padding(
+            padding: const EdgeInsets.all(7),
             child: QwAssetIcon(
               asset: QwAssets.settingReminder,
-              label: 'Reminder',
+              label: AppLocalizations.of(context).reminder,
               size: 28,
             ),
           ),
@@ -293,6 +297,7 @@ class _GoalPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       height: 54,
       padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -309,14 +314,14 @@ class _GoalPill extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const QwAssetIcon(
+          QwAssetIcon(
             asset: QwAssets.settingDailyGoal,
-            label: 'Daily goal icon',
+            label: l10n.dailyGoal,
             size: 28,
           ),
           const SizedBox(width: 10),
-          const Text(
-            'Daily goal',
+          Text(
+            AppLocalizations.of(context).dailyGoal,
             style: TextStyle(
               color: Color(0xFFB2BECC),
               fontSize: 15,
@@ -348,8 +353,8 @@ class _TodayTitleRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        const Text(
-          'Today',
+        Text(
+          AppLocalizations.of(context).navToday,
           style: TextStyle(
             color: QwColors.ink,
             fontSize: 23,
@@ -357,11 +362,11 @@ class _TodayTitleRow extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 10),
-        const Expanded(
+        Expanded(
           child: Padding(
-            padding: EdgeInsets.only(bottom: 3),
+            padding: const EdgeInsets.only(bottom: 3),
             child: Text(
-              'Hydration dashboard',
+              AppLocalizations.of(context).hydrationDashboard,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -420,8 +425,8 @@ class _HydrationCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Hydrate gently',
+                Text(
+                  AppLocalizations.of(context).appTagline,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -453,8 +458,8 @@ class _HydrationCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                     ),
-                    child: const Text(
-                      '+ Drink',
+                    child: Text(
+                      AppLocalizations.of(context).drinkButton,
                       style: TextStyle(fontWeight: FontWeight.w900),
                     ),
                   ),
@@ -534,9 +539,9 @@ class _RecentDrinks extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  "Today's drinks",
+                  AppLocalizations.of(context).todaysDrinks,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -548,7 +553,9 @@ class _RecentDrinks extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                records.isEmpty ? 'No records' : '${records.length} recent',
+                records.isEmpty
+                    ? AppLocalizations.of(context).noRecords
+                    : AppLocalizations.of(context).recentCount(records.length),
                 style: const TextStyle(
                   color: QwColors.muted,
                   fontSize: 12,
@@ -559,10 +566,10 @@ class _RecentDrinks extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           if (records.isEmpty)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
               child: Text(
-                'Tap + to add your first cup today.',
+                AppLocalizations.of(context).emptyTodayHint,
                 style: TextStyle(
                   color: QwColors.muted,
                   fontWeight: FontWeight.w700,
@@ -602,7 +609,7 @@ class _DrinkRecordRow extends StatelessWidget {
             height: 38,
             child: QwAssetIcon(
               asset: recordAsset ?? QwAssets.drinkWaterGlass,
-              label: '${_drinkLabel(record.drinkType)} record icon',
+              label: '${_drinkLabel(context, record.drinkType)} record icon',
               size: 38,
             ),
           ),
@@ -612,7 +619,7 @@ class _DrinkRecordRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _drinkLabel(record.drinkType),
+                  _drinkLabel(context, record.drinkType),
                   style: const TextStyle(
                     color: QwColors.ink,
                     fontWeight: FontWeight.w900,
@@ -644,26 +651,7 @@ class _DrinkRecordRow extends StatelessWidget {
     );
   }
 
-  static String _drinkLabel(DrinkType type) {
-    switch (type) {
-      case DrinkType.water:
-        return 'Water';
-      case DrinkType.tea:
-        return 'Tea';
-      case DrinkType.coffee:
-        return 'Coffee';
-      case DrinkType.juice:
-        return 'Juice';
-      case DrinkType.custom:
-        return 'Custom drink';
-      case DrinkType.milk:
-        return 'Milk';
-      case DrinkType.beer:
-        return 'Beer';
-      case DrinkType.coldDrink:
-        return 'Cold drink';
-      case DrinkType.orangeJuice:
-        return 'Orange juice';
-    }
+  static String _drinkLabel(BuildContext context, DrinkType type) {
+    return AppLocalizations.of(context).drinkLabel(type);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../core/hydration/hydration_store.dart';
 import '../../core/hydration/models.dart';
 import '../../core/hydration/volume_format.dart';
@@ -44,6 +45,7 @@ class _SlideDrinkPageState extends State<SlideDrinkPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final ozText = _oz == _oz.roundToDouble()
         ? '${_oz.toInt()}'
         : _oz.toStringAsFixed(1);
@@ -69,9 +71,9 @@ class _SlideDrinkPageState extends State<SlideDrinkPage> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const Expanded(
+                  Expanded(
                     child: Text(
-                      'Tune amount',
+                      l10n.tuneAmount,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,

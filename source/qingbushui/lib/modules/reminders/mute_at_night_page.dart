@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../app/qing_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../../core/hydration/hydration_store.dart';
+import '../../core/reminders/reminder_notifications.dart';
 import '../../shared/assets/qw_assets.dart';
 import '../../shared/widgets/qw_asset_icon.dart';
 import '../../shared/widgets/qw_screen_shell.dart';
@@ -28,13 +30,13 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
   }
 
   Future<void> _save() async {
-    await _store.saveReminders(
-      _store.reminders.copyWith(
-        muteAtNight: true,
-        muteEndHour: _hour,
-        muteEndMinute: _minute,
-      ),
+    final next = _store.reminders.copyWith(
+      muteAtNight: true,
+      muteEndHour: _hour,
+      muteEndMinute: _minute,
     );
+    await _store.saveReminders(next);
+    await ReminderNotifications.sync(next, requestPermissions: true);
     if (mounted) Modular.to.pop();
   }
 
@@ -62,9 +64,9 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const Text(
-                    'Mute at night',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context).muteAtNight,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.w900,
@@ -74,16 +76,16 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
               ),
             ),
             const SizedBox(height: 12),
-            const QwAssetIcon(
+            QwAssetIcon(
               asset: QwAssets.muteNightHero,
-              label: 'Mute at night illustration',
+              label: AppLocalizations.of(context).muteAtNight,
               size: 172,
             ),
             const SizedBox(height: 8),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 28),
               child: Text(
-                'When do you usually end a day?',
+                AppLocalizations.of(context).whenEndDay,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -139,8 +141,8 @@ class _MuteAtNightPageState extends State<MuteAtNightPage> {
                     ),
                   ),
                   onPressed: _save,
-                  child: const Text(
-                    'Save',
+                  child: Text(
+                    AppLocalizations.of(context).save,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                 ),
